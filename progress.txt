@@ -1,0 +1,26 @@
+5 DAY Project (Can be expended to 7 days)
+
+DAY 1 (date) - Initial Setup and Planning
+DAY 2 (date) - HOME PAGE and redirection build (minimal working app)
+DAY 3 (date) - Components Building First and second
+DAY 4 (date) - Last two component Building
+DAY 5 (date) - Final Polish & Deploy 1
+
+(Extended Days if possible)
+ 
+DAY 6 (date) - Addtional Feautres
+DAY 7 (date) TEST & DEPLOY 2
+(Hire someone to do redesign while keeping the strucutre same. Max budget 1000rs)
+
+Hosting:
+
+polarisapp.online   100+
+polarisapp.tech     500+
+thepolarisapp.in    1500rs for three years
+polarisapp.app      1500rs for one year
+thepolaris.app      1500rs for one year
+
+Git:
+
+Main Branch - master
+Deploy Branch - build
