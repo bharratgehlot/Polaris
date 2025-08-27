@@ -1,9 +1,12 @@
-// Component 5 - Export, it will take all details and export it as all-in-one pdf
-
-// Redirect to home page again
+import './Export.css'
 
 function Export() {
-  return <div>Export Component</div>
+  return (
+    <div className="export-container">
+      <h2 className="export-title">Export</h2>
+      <p>Export your project here</p>
+    </div>
+  )
 }
 
 export default Export

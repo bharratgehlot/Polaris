@@ -1,7 +1,12 @@
-// Component 1 - Planning, this component will take input from user such as basic planning and scope of project
+import './Planning.css'
 
 function Planning() {
-  return <div>Planning Component</div>
+  return (
+    <div className="planning-container">
+      <h2 className="planning-title">Planning</h2>
+      <p>Plan your project here</p>
+    </div>
+  )
 }
 
 export default Planning

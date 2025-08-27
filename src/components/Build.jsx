@@ -1,7 +1,12 @@
-// Component 4 - Build, everyhting about build and deployong the app on the market
+import './Build.css'
 
 function Build() {
-  return <div>Build Component</div>
+  return (
+    <div className="build-container">
+      <h2 className="build-title">Build</h2>
+      <p>Build your project here</p>
+    </div>
+  )
 }
 
 export default Build

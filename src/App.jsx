@@ -10,24 +10,28 @@ import { useState } from 'react'
 import polarisLogo from './assets/polaris_logo.png'
 import polarisLogo2 from './assets/polaris_logo.png'
 
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom'
 
 function AppContent() {
-  const [count, setCount] = useState(0)
+  const location = useLocation()
+  const isHome = location.pathname === '/'
 
   return (
 
     <>
+      {isHome &&
 
 
-      <div>
-        <a href=" " target="_blank">
-          <img src={polarisLogo} className="polaris_logo" alt="Polaris logo" />
-        </a>
-      </div>
+        <>
+
+          <div>
+            <a>
+              <img src={polarisLogo} className="polaris_logo" alt="Polaris logo" />
+            </a>
+          </div>
 
 
-      {/*
+          {/*
           <div className='logo_holder'>
           <a> 
           <img src={polarisLogo2} alt="Polaris logo" />
@@ -35,30 +39,40 @@ function AppContent() {
          </div> */ }
 
 
-      <h1>Polaris</h1>
+          <h1>Polaris</h1>
 
-      <div>
-        <button>
-          START BUILDING NOW
-        </button>
-      </div>
+          <div>
+            <Link to="/planning">
+              <button className='build-now'>
+                START BUILDING NOW
+              </button>
+            </Link>
+          </div>
 
-      <p className="read-the-docs">
-        Polaris helps you create your project faster
-      </p>
+          <p className="read-the-docs">
+            Polaris helps you create your project faster
+          </p>
 
 
 
-      <nav>
-        <Link to="/planning">Planning</Link>
-        <Link to="/design">Design</Link>
-        <Link to="/code">Code</Link>
-        <Link to="/build">Build</Link>
-        <Link to="/export">Export</Link>
-      </nav>
+
+        </>
+
+      }
+
+      {!isHome && (
+        <nav>
+          <Link to="/planning">Planning</Link>
+          <Link to="/design">Design</Link>
+          <Link to="/code">Code</Link>
+          <Link to="/build">Build</Link>
+          <Link to="/export">Export</Link>
+        </nav>
+      )}
+
 
       <Routes>
-        <Route path="/" element={<Planning />} />
+        <Route path="/" element={null} />
         <Route path="/planning" element={<Planning />} />
         <Route path="/design" element={<Design />} />
         <Route path="/code" element={<Code />} />

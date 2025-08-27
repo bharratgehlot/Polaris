@@ -57,21 +57,79 @@ p {
   margin: 1.5em 0;
 }
 
-button {
-  padding: 0.6em 1.2em;
-  border: 1px solid transparent;
+.build-now{
+  padding: 10px 19px;
+  border: 2px solid transparent;
   border-radius: 8px;
-  background-color: #1a1a1a;
-  color: inherit;
-  font: inherit;
+  background-color: #1a1a1ac5;
   cursor: pointer;
   transition: border-color 0.25s;
   color: white;
+
 }
 
-button:hover {
-  border-color: #646cff;
+.build-now:hover{
+  border-color: white;
+  background-color: #1a1a1a;
 }
+
+/* Navigation Styles */
+nav {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid yellowgreen;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+}
+
+nav a {
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 3px;
+  background-color: #1a1a1ac5;
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+nav a:hover {
+  background-color: #1a1a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px #1a1a1a7c;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (prefers-color-scheme: light) {
   :root {

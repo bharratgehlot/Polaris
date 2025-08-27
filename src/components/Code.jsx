@@ -1,7 +1,12 @@
-// Component 3 - Code, this stage include project development and real coding
+import './Code.css'
 
 function Code() {
-  return <div>Code Component</div>
+  return (
+    <div className="code-container">
+      <h2 className="code-title">Code</h2>
+      <p>Code your project here</p>
+    </div>
+  )
 }
 
 export default Code

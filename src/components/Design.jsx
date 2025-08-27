@@ -1,8 +1,12 @@
-// Component 2 - Design, this component includes the design of the project. Everything (Evrthing is good project name) from colors to styling kit and how many pages
-
+import './Design.css'
 
 function Design() {
-  return <div>Design Component</div>
+  return (
+    <div className="design-container">
+      <h2 className="design-title">Design</h2>
+      <p>Design your project here</p>
+    </div>
+  )
 }
 
 export default Design
