@@ -23,4 +23,4 @@ thepolaris.app      1500rs for one year
 Git:
 
 Main Branch - master
-Deploy Branch - build
+Deploy Branch - builds
