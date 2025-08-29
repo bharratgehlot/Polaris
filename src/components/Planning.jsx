@@ -21,7 +21,7 @@ function Planning() {
 
 
   const [showPreview, setShowPreview] = useState(false)
-  const [formData, setFormData] = useState({
+  const [planningData, setPlanningData] = useState({
     frontend: '',
     backend: '',
     database: '',
@@ -34,20 +34,20 @@ function Planning() {
   useEffect(() => {
     const savedData = localStorage.getItem('projectPlanningData')
     if (savedData) {
-      setFormData(JSON.parse(savedData))
+      setPlanningData(JSON.parse(savedData))
     }
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('projectPlanningData', JSON.stringify(formData))
-  }, [formData])
+    localStorage.setItem('projectPlanningData', JSON.stringify(planningData))
+  }, [planningData])
 
   const handleSelectChange = (field, value) => {
-    setFormData(prev => ({ ...prev, [field]: value }))
+    setPlanningData(prev => ({ ...prev, [field]: value }))
   }
 
   const handleFeatureChange = (feature, checked) => {
-    setFormData(prev => ({
+    setPlanningData(prev => ({
       ...prev,
       features: checked
         ? [...prev.features, feature]
@@ -56,9 +56,9 @@ function Planning() {
   }
 
   const getfeedbackObjectTech = () => {
-    if (!formData.frontend || !formData.backend) return null
+    if (!planningData.frontend || !planningData.backend) return null
     
-    const key = `${formData.frontend}+${formData.backend}`
+    const key = `${planningData.frontend}+${planningData.backend}`
     return feedbackObjectTech[key] || { 
       message: '💡 Interesting combination! Make sure they work well together', 
       type: 'neutral' 
@@ -68,9 +68,9 @@ function Planning() {
 
 
   const getfeedbackObjectDatabase = () => {
-    if (!formData.database) return null 
+    if (!planningData.database) return null 
 
-    const key = `${formData.database}`
+    const key = `${planningData.database}`
     return feedbackObjectDatabase[key] || {
       message: 'Well choosen database, make sure it work properly with frontend and backend',
       type: 'neutral'
@@ -79,9 +79,9 @@ function Planning() {
 
 
   const getfeedbackObjectFeatures = () => {
-    if(!formData.features.length === 0) return null
+    if(planningData.features.length === 0) return null
 
-    const key = `${formData.features}`
+    const key = `${planningData.features}`
     return {
       message: "TIP: Don't select more than three if you gonna use AI. It will be messy. You can add more features later"
     }
@@ -114,42 +114,42 @@ function Planning() {
 
               <div className="preview-item">
                 <span className="preview-label">Frontend</span>
-                <span className="preview-value">{formData.frontend || 'Not selected'}</span>
+                <span className="preview-value">{planningData.frontend || 'Not selected'}</span>
               </div>
 
               <div className="preview-item">
                 <span className="preview-label">Backend</span>
-                <span className="preview-value">{formData.backend || 'Not selected'}</span>
+                <span className="preview-value">{planningData.backend || 'Not selected'}</span>
               </div>
 
               <div className="preview-item">
                 <span className="preview-label">Database</span>
-                <span className="preview-value">{formData.database || 'Not selected'}</span>
+                <span className="preview-value">{planningData.database || 'Not selected'}</span>
               </div>
 
 
 
               <div className="preview-item">
                 <span className="preview-label">Styling</span>
-                <span className="preview-value">{formData.styling || 'Not selected'}</span>
+                <span className="preview-value">{planningData.styling || 'Not selected'}</span>
               </div>
 
               <div className="preview-item">
                 <span className="preview-label">Libraries</span>
-                <span className="preview-value">{formData.compLibraries || 'Not selected'}</span>
+                <span className="preview-value">{planningData.compLibraries || 'Not selected'}</span>
               </div>
 
               <div className="preview-item">
                 <span className="preview-label">Pages</span>
-                <span className="preview-value">{formData.pages || 'Not selected'}</span>
+                <span className="preview-value">{planningData.pages || 'Not selected'}</span>
               </div>
 
               <div className="preview-item features-preview">
                 <span className="preview-label">Features</span>
 
                 <div className="preview-features">
-                  {formData.features.length > 0 ? (
-                    formData.features.map((feature, index) => (
+                  {planningData.features.length > 0 ? (
+                    planningData.features.map((feature, index) => (
                       <span key={index} className="feature-tag">{feature}</span>
                     ))
                   ) : (
@@ -207,7 +207,7 @@ function Planning() {
 
               <select
                 className="modern-select"
-                value={formData.frontend}
+                value={planningData.frontend}
                 onChange={(e) => handleSelectChange('frontend', e.target.value)}
               >
                 {/* 
@@ -240,7 +240,7 @@ function Planning() {
               <label className="input-label">Backend Technology</label>
               <select
                 className="modern-select"
-                value={formData.backend}
+                value={planningData.backend}
                 onChange={(e) => handleSelectChange('backend', e.target.value)}
               >
                 <option value="">Select backend</option>
@@ -254,7 +254,7 @@ function Planning() {
             </div>
               
 
-              {formData.frontend && formData.backend && (
+              {planningData.frontend && planningData.backend && (
                 <div className="tech-feedback">
                 {getfeedbackObjectTech()?.message}
                 </div>
@@ -266,7 +266,7 @@ function Planning() {
               <label className="input-label">Database</label>
               <select
                 className="modern-select"
-                value={formData.database}
+                value={planningData.database}
                 onChange={(e) => handleSelectChange('database', e.target.value)}
               >
                 <option value="">Select database</option>
@@ -277,7 +277,7 @@ function Planning() {
             </div>
 
 
-              {formData.database && (
+              {planningData.database && (
                 <div className="tech-feedback">
                 {getfeedbackObjectDatabase()?.message}
                 </div>
@@ -298,7 +298,7 @@ function Planning() {
               <label className="input-label">CSS Framework</label>
               <select
                 className="modern-select"
-                value={formData.styling}
+                value={planningData.styling}
                 onChange={(e) => handleSelectChange('styling', e.target.value)}
               >
                 <option value="">Select styling</option>
@@ -319,7 +319,7 @@ function Planning() {
 
               <select
                 className="modern-select"
-                value={formData.compLibraries}
+                value={planningData.compLibraries}
                 onChange={(e) => handleSelectChange('compLibraries', e.target.value)}
               >
 
@@ -352,7 +352,7 @@ function Planning() {
               <label className="input-label">Number of Pages</label>
               <select
                 className="modern-select"
-                value={formData.pages}
+                value={planningData.pages}
                 onChange={(e) => handleSelectChange('pages', e.target.value)}
               >
                 <option value="">Select pages</option>
@@ -377,7 +377,7 @@ function Planning() {
               <label key={feature} className="feature-option">
                 <input
                   type="checkbox"
-                  checked={formData.features.includes(feature)}
+                  checked={planningData.features.includes(feature)}
                   onChange={(e) => handleFeatureChange(feature, e.target.checked)}
                 />
                 <span className="checkbox-custom"></span>
@@ -385,7 +385,7 @@ function Planning() {
               </label>
             ))}
           </div>
-                {formData.features.length > 2 && (
+                {planningData.features.length > 2 && (
                 <div className="tech-feedback">
                 {getfeedbackObjectFeatures()?.message}
                 </div>
