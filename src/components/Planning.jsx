@@ -3,9 +3,16 @@ import './Planning.css'
 
 function Planning() {
   //const frontendOptions = ['React', 'Vue', 'Angular', 'Svelte', 'Next.js', 'Nuxt.js', 'HTML, CSS, Javascript']
-  const backendOptions = ['None', 'Node.js', 'Python', 'Java', 'C#', '.NET', 'PHP', 'Go']
+  const backendOptions = ['None', 'Node.js', 'Python', 'Java', 'C#', '.NET', 'PHP', 'Go', 'Ruby on rails']
   const databaseOptions = ['None', 'MongoDB', 'PostgreSQL', 'MySQL', 'SQLite', 'Redis', 'Firebase']
   const featuresOptions = ['User Authentication', 'Payment Integration', 'Real-time Chat', 'File Upload', 'Email Notifications', 'Search Functionality', 'Admin Dashboard', 'API Integration', 'Dark Mode', 'Mobile Responsive']
+
+  const feedbackObject = {
+     'React+Node.js': {message: '🚀 Excellent choice! Popular and well-supported stack', type: 'great'},
+     'Angular+Java': { message: '🏢 Enterprise-grade stack, perfect for large apps', type: 'great' },
+     'Vanilla JavaScript+Ruby on rails': { message: '⚠️ Uncommon combo, consider modern frontend framework', type: 'warning' }
+  }
+
 
   const [showPreview, setShowPreview] = useState(false)
   const [formData, setFormData] = useState({
@@ -41,6 +48,17 @@ function Planning() {
         : prev.features.filter(f => f !== feature)
     }))
   }
+
+  const getFeedbackObject = () => {
+    if (!formData.frontend || !formData.backend) return null
+    
+    const key = `${formData.frontend}+${formData.backend}`
+    return feedbackObject[key] || { 
+      message: '💡 Interesting combination! Make sure they work well together', 
+      type: 'neutral' 
+    }
+  }
+
 
   return (
     <div className="planning-container">
@@ -217,7 +235,19 @@ function Planning() {
                   <option key={option} value={option}>{option}</option>
                 ))}
               </select>
+
+              {formData.frontend && formData.backend && (
+                <div className="tech-feedback">
+                {getFeedbackObject()?.message}
+                </div>
+              )}
+
+
             </div>
+              
+
+
+
 
             <div className="input-group">
               <label className="input-label">Database</label>
@@ -304,10 +334,12 @@ function Planning() {
                 onChange={(e) => handleSelectChange('pages', e.target.value)}
               >
                 <option value="">Select pages</option>
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, '10+'].map(num => (
+                {[1, 2, 3, 4, '5+'].map(num => (
                   <option key={num} value={num}>{num}</option>
                 ))}
               </select>
+
+
             </div>
           </div>
         </div>

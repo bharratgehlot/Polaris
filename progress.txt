@@ -27,4 +27,16 @@ Deploy Branch - builds
 
 Styles:
 
+May use google fonts
+
 Primary Color: 
+
+
+Quality Checks:
+
+index.html => Checked
+
+
+Feature Ideas:
+
+// Each componet have some message that describe functionalities of the page when user visits first time.
