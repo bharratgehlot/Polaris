@@ -2,12 +2,10 @@ import { useState, useEffect } from 'react'
 import './Code.css'
 
 function Code() {
-
-
-
-
   const [showDesignPreview, setShowDesignPreview] = useState(false)
+  // amazonq-ignore-next-line
   const [showPlanningPreview, setshowPlanningPreview] = useState(false)
+
   const [planningData, setPlanningData] = useState({
     frontend: '',
     backend: '',
@@ -30,6 +28,8 @@ function Code() {
     componentStyle: ''
   })
 
+// Save and load Planning data from local storage
+
   useEffect(() => {
     try {
       const savedData = localStorage.getItem('projectPlanningData')
@@ -42,6 +42,10 @@ function Code() {
 
   }, [])
 
+
+// Save and load Desgin data from local storage
+
+
   useEffect(() => {
     try {
       const savedDesignData = localStorage.getItem('projectDesignData')
@@ -49,23 +53,24 @@ function Code() {
         setDesignData(JSON.parse(savedDesignData))
       }
     } catch (error) {
-      console.log('Error loading planning data: ', error)
+      console.log('Error loading design data: ', error)
     }
   }, [])
+
+// What does this line do ??  
+
 
   useEffect(() => {
     localStorage.setItem('projectDesignData', JSON.stringify(designData))
   }, [designData])
 
-  const handleColorChange = (field, value) => {
-    setDesignData(prev => ({ ...prev, [field]: value }))
-  }
+
 
   return (
-    <div className="design-container">
-      <div className="design-header">
-        <h2 className="design-title">🎨 Design System</h2>
-        <p className="design-subtitle">Define your project's visual identity</p>
+    <div className="code-container">
+      <div className="code-header">
+        <h2 className="code-title">💻 Code Generation</h2>
+        <p className="code-subtitle">Generate your project blueprint and code structure</p>
       </div>
 
 
@@ -208,12 +213,8 @@ function Code() {
 
 
 
-      <div className="design-sections">
-
-
-
-
-        <div className="design-card">
+      <div className="code-sections">
+        <div className="code-card">
           <div className="card-header">
             <h3 className="card-title">📝 Typography</h3>
             <p className="card-description">Set your text styles</p>
@@ -223,26 +224,10 @@ function Code() {
             <div className="input-group">
               <label className="input-label">Font Family</label>
               <select>
-
               </select>
             </div>
-
-
           </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
       </div>
 
 

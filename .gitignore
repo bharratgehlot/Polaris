@@ -28,7 +28,7 @@ dist/
 build/
 
 # Old files for reference purpose
-src/components/Design_old.jsx
-src/components/Design_old.css
+src/components/boilerplate.jsx
+src/components/boilerplate.css
 src/components/Planning_old.jsx
 src/components/Planning_old.css
