@@ -7,10 +7,16 @@ function Planning() {
   const databaseOptions = ['None', 'MongoDB', 'PostgreSQL', 'MySQL', 'SQLite', 'Redis', 'Firebase']
   const featuresOptions = ['User Authentication', 'Payment Integration', 'Real-time Chat', 'File Upload', 'Email Notifications', 'Search Functionality', 'Admin Dashboard', 'API Integration', 'Dark Mode', 'Mobile Responsive']
 
-  const feedbackObject = {
+  const feedbackObjectTech = {
      'React+Node.js': {message: '🚀 Excellent choice! Popular and well-supported stack', type: 'great'},
      'Angular+Java': { message: '🏢 Enterprise-grade stack, perfect for large apps', type: 'great' },
      'Vanilla JavaScript+Ruby on rails': { message: '⚠️ Uncommon combo, consider modern frontend framework', type: 'warning' }
+  }
+
+  const feedbackObjectDatabase = {
+    'MySQL': {message: "Excellent Choice Brother", type: 'great'},
+    'PostgreSQL': {message: "Enterprise level stability", type: 'great'},
+    'MongoDB': {message: "Great for MERN Stack", type: 'great'}
   }
 
 
@@ -49,16 +55,37 @@ function Planning() {
     }))
   }
 
-  const getFeedbackObject = () => {
+  const getfeedbackObjectTech = () => {
     if (!formData.frontend || !formData.backend) return null
     
     const key = `${formData.frontend}+${formData.backend}`
-    return feedbackObject[key] || { 
+    return feedbackObjectTech[key] || { 
       message: '💡 Interesting combination! Make sure they work well together', 
       type: 'neutral' 
     }
   }
 
+
+
+  const getfeedbackObjectDatabase = () => {
+    if (!formData.database) return null 
+
+    const key = `${formData.database}`
+    return feedbackObjectDatabase[key] || {
+      message: 'Well choosen database, make sure it work properly with frontend and backend',
+      type: 'neutral'
+    }
+  }
+
+
+  const getfeedbackObjectFeatures = () => {
+    if(!formData.features.length === 0) return null
+
+    const key = `${formData.features}`
+    return {
+      message: "TIP: Don't select more than three if you gonna use AI. It will be messy. You can add more features later"
+    }
+  }
 
   return (
     <div className="planning-container">
@@ -66,20 +93,6 @@ function Planning() {
         <h2 className="planning-title">📋 Project Planning</h2>
         <p className="planning-subtitle">Define your project's technical foundation</p>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -236,16 +249,16 @@ function Planning() {
                 ))}
               </select>
 
-              {formData.frontend && formData.backend && (
-                <div className="tech-feedback">
-                {getFeedbackObject()?.message}
-                </div>
-              )}
 
 
             </div>
               
 
+              {formData.frontend && formData.backend && (
+                <div className="tech-feedback">
+                {getfeedbackObjectTech()?.message}
+                </div>
+              )}
 
 
 
@@ -262,6 +275,15 @@ function Planning() {
                 ))}
               </select>
             </div>
+
+
+              {formData.database && (
+                <div className="tech-feedback">
+                {getfeedbackObjectDatabase()?.message}
+                </div>
+              )}
+
+
           </div>
         </div>
 
@@ -363,6 +385,12 @@ function Planning() {
               </label>
             ))}
           </div>
+                {formData.features.length > 2 && (
+                <div className="tech-feedback">
+                {getfeedbackObjectFeatures()?.message}
+                </div>
+              )}
+
         </div>
       </div>
 
