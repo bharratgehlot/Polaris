@@ -1,8 +1,8 @@
 5 DAY Project (Can be expended to 7 days)
 
-DAY 1 (date) - Initial Setup and Planning
-DAY 2 (date) - HOME PAGE and redirection build (minimal working app)
-DAY 3 (date) - Components Building First and second
+DAY 1 (date) - Initial Setup and Planning - 5.5 hours
+DAY 2 (date) - HOME PAGE and redirection build (minimal working app) - 3 hours
+DAY 3 (date) - Components Building First and second - 4 hours
 DAY 4 (date) - Last two component Building
 DAY 5 (date) - Final Polish & Deploy 1
 
