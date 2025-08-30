@@ -4,7 +4,102 @@ import './Code.css'
 function Code() {
 
 
+  // Working data with their state (what user is currently editing)
+
+  const [codeData, setCodeData] = useState({
+    ideSelector: '',
+    durationOfCode: ''
+  })
+
+
+
+
+
+
+
+
+
+  // Saved data with their state (what's been explicitly saved)
+
+
+
+  const [savedCodeData, setSavedCodeData] = useState({
+    ideSelector: '',
+    durationOfCode: ''
+  })
+
+
+
+
+
+
+
+
+
+  // Load Code data from local storage
+
+  useEffect(() => {
+    try {
+      const savedCodeData = localStorage.getItem('projectCodeData')
+      if (savedCodeData) {
+        const parsedData = JSON.parse(savedCodeData)
+        setSavedCodeData(parsedData)
+        setCodeData(parsedData)
+      }
+    } catch (error) {
+      console.log('Error loading code data: ', error)
+    }
+  }, [])
+
+
+  // Manual save function for code data
+
+
+  const saveCodeData = () => {
+    try {
+      localStorage.setItem('projectCodeData', JSON.stringify(codeData))
+      setSavedCodeData(codeData)
+    } catch (error) {
+      console.log('Error saving code data: ', error)
+    }
+  }
+
+  // State Management for the Code Data Preview
+
+  const [showCodePreview, setShowCodePreview] = useState(false)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // Preview Planning Data and manage their state when changed
+
 
   const [showPlanningPreview, setshowPlanningPreview] = useState(false)
 
@@ -32,6 +127,7 @@ function Code() {
     }
 
   }, [])
+
 
 
 
@@ -67,61 +163,88 @@ function Code() {
   }, [])
 
 
-// Working data with their state (what user is currently editing)
-
-  const [codeData, setCodeData] = useState({
-    ideSelector: '',
-    durationOfCode: ''
-  })
-
-// Saved data with their state (what's been explicitly saved)
-
-  const [savedCodeData, setSavedCodeData] = useState({
-    ideSelector: '',
-    durationOfCode: ''
-  })
-
-  // Load Code data from local storage
-
-  useEffect(() => {
-    try {
-      const savedCodeData = localStorage.getItem('projectCodeData')
-      if (savedCodeData) {
-        const parsedData = JSON.parse(savedCodeData)
-        setSavedCodeData(parsedData)
-        setCodeData(parsedData)
-      }
-    } catch (error) {
-      console.log('Error loading code data: ', error)
-    }
-  }, [])
-
-  // Manual save function for code data
-
-
-  const saveCodeData = () => {
-    try {
-      localStorage.setItem('projectCodeData', JSON.stringify(codeData))
-      setSavedCodeData(codeData)
-    } catch (error) {
-      console.log('Error saving code data: ', error)
-    }
-  }
-
-  // State Management for the Code Data Preview
-
-  const [showCodePreview, setShowCodePreview] = useState(false)
-
-
-
-
-
   // What does this line do ??  
-
 
   useEffect(() => {
     localStorage.setItem('projectDesignData', JSON.stringify(designData))
   }, [designData])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -286,6 +409,7 @@ function Code() {
         {showCodePreview && (
           <div className="preview-content">
             <div className="preview-grid">
+
               <div className="preview-item">
                 <span className="preview-label">IDE</span>
                 <span className="preview-value">{savedCodeData.ideSelector || 'Not saved'}</span>
@@ -298,9 +422,6 @@ function Code() {
             </div>
           </div>
         )}
-
-
-
       </div>
 
 
@@ -389,6 +510,8 @@ function Code() {
               Save Code Configuration
             </button>
           </div>
+
+
         </div>
       </div>
 

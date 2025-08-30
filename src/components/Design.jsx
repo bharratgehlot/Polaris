@@ -3,12 +3,218 @@ import './Design.css'
 
 function Design() {
 
-  // Color Options Array
+
+  // Working data with their state (what user is currently editing)
+
+  const [designData, setDesignData] = useState({
+    primaryColor: '',
+    secondaryColor: '',
+    additionalColor: '',
+    fontStyle: '',
+    fontSize: '',
+    navigationStyle: '',
+    spacingPadding: '',
+    buttonStyle: '',
+    componentStyle: ''
+  })
+
+
+  // Saved data with their state (what's been explicitly saved)
+
+
+
+  const [savedDesignData, setSavedDesignData] = useState({
+    primaryColor: '',
+    secondaryColor: '',
+    additionalColor: '',
+    fontStyle: '',
+    fontSize: '',
+    navigationStyle: '',
+    spacingPadding: '',
+    buttonStyle: '',
+    componentStyle: ''
+  })
+
+
+  // Load Design data from local storage
+
+  useEffect(() => {
+    try {
+      const savedDesignData = localStorage.getItem('projectDesignData')
+      if (savedDesignData) {
+        const parsedData = JSON.parse(savedDesignData)
+        setSavedDesignData(parsedData)  // Set saved state
+        setDesignData(parsedData)       // Set working state
+      }
+    } catch (error) {
+      console.log('Error loading Design data: ', error)
+    }
+  }, [])
+
+
+  // Manual save function for code data
+
+
+  const saveDesignData = () => {
+    try {
+      localStorage.setItem('projectDesignData', JSON.stringify(designData))
+      setSavedDesignData(designData)
+    } catch (error) {
+      console.log('Error saving design data: ', error)
+    }
+  }
+
+  // State Management for the Design Data Preview
+
+  const [showDesignPreview, setShowDesignPreview] = useState(false)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const [planningData, setPlanningData] = useState({
+    frontend: '',
+    backend: '',
+    database: '',
+    pages: '',
+    styling: '',
+    compLibraries: '',
+    features: []
+  })
+
+
+
+  // Save and load Planning data from local storage
+
+  useEffect(() => {
+    try {
+      const savedData = localStorage.getItem('projectPlanningData')
+      if (savedData) {
+        setPlanningData(JSON.parse(savedData))
+      }
+    } catch (error) {
+      console.log('Error loading planning data: ', error)
+    }
+
+  }, [])
+
+
+
+
+
+
+  // Preview Planning Data and manage their state when changed
+
+
+
+  const [showPlanningPreview, setshowPlanningPreview] = useState(false)
+
+  // Save and load Desgin data from local storage
+
+
+
+
+
+
+
+
+
+
+
+
+  // Saved data with their state (what's been explicitly saved)
+
+
+
+  /* What does this line do ??  
+
+  useEffect(() => {
+    localStorage.setItem('projectDesignData', JSON.stringify(designData))
+  }, [designData])
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Color Options Array 1 
 
   const colorOptions = ['Red', 'Blue', 'Green', 'Purple', 'Orange', 'Pink', 'Yellow', 'Teal', 'Indigo', 'Gray', 'Black', 'White']
 
 
-  // Font styling code
+  // Font styling code 2 
 
   const getFontClass = (fontName) => {
     const fontMap = {
@@ -26,7 +232,7 @@ function Design() {
     return fontMap[fontName] || ''
   }
 
-  // Font Sizing code 
+  // Font Sizing code 3
 
   const getFontSizeClass = (fontSize) => {
     const sizeMap = {
@@ -39,62 +245,38 @@ function Design() {
     return sizeMap[fontSize] || ''
   }
 
-  // Preview Section (Design)
 
-  const [showDesignPreview, setShowDesignPreview] = useState(false)
-  const [showPlanningPreview, setshowPlanningPreview] = useState(false)
-  const [planningData, setPlanningData] = useState({
-    frontend: '',
-    backend: '',
-    database: '',
-    pages: '',
-    styling: '',
-    compLibraries: '',
-    features: []
-  })
 
-  const [designData, setDesignData] = useState({
-    primaryColor: '',
-    secondaryColor: '',
-    additionalColor: '',
-    fontStyle: '',
-    fontSize: '',
-    navigationStyle: '',
-    spacingPadding: '',
-    buttonStyle: '',
-    componentStyle: ''
-  })
 
-  useEffect(() => {
-    try {
-      const savedData = localStorage.getItem('projectPlanningData')
-      if (savedData) {
-        setPlanningData(JSON.parse(savedData))
-      }
-    } catch (error) {
-      console.log('Error loading planning data: ', error)
-    }
 
-  }, [])
 
-  useEffect(() => {
-    try {
-      const savedDesignData = localStorage.getItem('projectDesignData')
-      if (savedDesignData) {
-        setDesignData(JSON.parse(savedDesignData))
-      }
-    } catch (error) {
-      console.log('Error loading planning data: ', error)
-    }
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem('projectDesignData', JSON.stringify(designData))
-  }, [designData])
 
   const handleColorChange = (field, value) => {
     setDesignData(prev => ({ ...prev, [field]: value }))
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div className="design-container">
@@ -185,6 +367,13 @@ function Design() {
       </div>
 
 
+
+
+
+
+
+
+
       <div className="preview-card">
         <button
           className={`preview-toggle ${showDesignPreview ? 'active' : ''}`}
@@ -197,41 +386,46 @@ function Design() {
         {showDesignPreview && (
           <div className="preview-content">
             <div className="preview-grid">
+
+
               <div className="preview-item">
                 <span className="preview-label">Colors</span>
                 <span className="preview-value">
-                  {[designData.primaryColor, designData.secondaryColor, designData.additionalColor]
-                    .filter(Boolean).join(', ') || 'Not selected'}
+                  {[savedDesignData.primaryColor, savedDesignData.secondaryColor, savedDesignData.additionalColor]
+                    .filter(Boolean).join(', ') || 'Not saved'}
                 </span>
               </div>
 
               <div className="preview-item">
                 <span className="preview-label">Typography</span>
                 <span className="preview-value">
-                  {[designData.fontStyle, designData.fontSize]
-                    .filter(Boolean).join(' - ') || 'Not selected'}
+                  {[savedDesignData.fontStyle, savedDesignData.fontSize]
+                    .filter(Boolean).join(' - ') || 'Not saved'}
                 </span>
               </div>
 
               <div className="preview-item">
                 <span className="preview-label">Navigation</span>
-                <span className="preview-value">{designData.navigationStyle || 'Not selected'}</span>
+                <span className="preview-value">{savedDesignData.navigationStyle || 'Not saved'}</span>
               </div>
 
               <div className="preview-item">
                 <span className="preview-label">Spacing</span>
-                <span className="preview-value">{designData.spacingPadding || 'Not selected'}</span>
+                <span className="preview-value">{savedDesignData.spacingPadding || 'Not saved'}</span>
               </div>
 
               <div className="preview-item">
                 <span className="preview-label">Button Style</span>
-                <span className="preview-value">{designData.buttonStyle || 'Not selected'}</span>
+                <span className="preview-value">{savedDesignData.buttonStyle || 'Not saved'}</span>
               </div>
 
               <div className="preview-item">
                 <span className="preview-label">Component Style</span>
-                <span className="preview-value">{designData.componentStyle || 'Not selected'}</span>
+                <span className="preview-value">{savedDesignData.componentStyle || 'Not saved'}</span>
               </div>
+
+
+
             </div>
           </div>
         )}
@@ -330,7 +524,9 @@ function Design() {
             <p className="card-description">Set your text styles</p>
           </div>
 
+
           <div className="typography-grid">
+
             <div className="input-group">
               <label className="input-label">Font Family</label>
               <select
@@ -374,6 +570,7 @@ function Design() {
                 </div>)}
             </div>
           </div>
+
         </div>
 
 
@@ -503,8 +700,16 @@ function Design() {
                   name="componentStyle"
                   value={style.value}
                   checked={designData.componentStyle === style.value}
-                  onChange={(e) => handleColorChange('componentStyle', e.target.value)}
+                  onChange={(e) =>{ 
+                    
+                    setDesignData({ ...designData, componentStyle: e.target.value })
+                    console.log('designData.componentStyle =', e.target.value)
+                }
+                }
+                  
+
                 />
+                {/*onChange={(e) => handleColorChange('componentStyle', e.target.value)}*/}
                 <span className="radio-custom"></span>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }} >
                   <span className="radio-label">{style.value}</span>
@@ -513,28 +718,16 @@ function Design() {
               </label>
             ))}
           </div>
+
+
+
+          <div className="save-section">
+            <button className="save-button" onClick={saveDesignData}>
+              Save Design Data
+            </button>
+          </div>
+
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
       </div>
