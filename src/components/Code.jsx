@@ -23,6 +23,13 @@ function Code() {
 
 
 
+
+
+
+
+
+
+
   const [savedCodeData, setSavedCodeData] = useState({
     ideSelector: '',
     durationOfCode: ''
@@ -31,12 +38,14 @@ function Code() {
 
 
 
+  // State Management for the Code Data Preview
+
+  const [showCodePreview, setShowCodePreview] = useState(false)
 
 
 
 
-
-  // Load Code data from local storage
+  // Load saved Code data from local storage
 
   useEffect(() => {
     try {
@@ -54,7 +63,6 @@ function Code() {
 
   // Manual save function for code data
 
-
   const saveCodeData = () => {
     try {
       localStorage.setItem('projectCodeData', JSON.stringify(codeData))
@@ -64,189 +72,33 @@ function Code() {
     }
   }
 
-  // State Management for the Code Data Preview
-
-  const [showCodePreview, setShowCodePreview] = useState(false)
+  // Manual CLear Button
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // Preview Planning Data and manage their state when changed
-
-
-  const [showPlanningPreview, setshowPlanningPreview] = useState(false)
-
-  const [planningData, setPlanningData] = useState({
-    frontend: '',
-    backend: '',
-    database: '',
-    pages: '',
-    styling: '',
-    compLibraries: '',
-    features: []
-  })
-
-
-  // Save and load Planning data from local storage
-
-  useEffect(() => {
+  const clearCodeData = () => {
     try {
-      const savedData = localStorage.getItem('projectPlanningData')
-      if (savedData) {
-        setPlanningData(JSON.parse(savedData))
+      localStorage.removeItem('projectCodeData')
+      const emptyData = {
+        ideSelector: '',
+        durationOfCode: ''
       }
+      setCodeData(emptyData)
+      setSavedCodeData(emptyData)
     } catch (error) {
-      console.log('Error loading planning data: ', error)
+      console.log('Error clearing code data: ', error)
     }
+  }
 
-  }, [])
 
 
 
 
-  // Preview Design Data and manage their state when changed
 
 
-  const [showDesignPreview, setShowDesignPreview] = useState(false)
-  const [designData, setDesignData] = useState({
-    primaryColor: '',
-    secondaryColor: '',
-    additionalColor: '',
-    fontStyle: '',
-    fontSize: '',
-    navigationStyle: '',
-    spacingPadding: '',
-    buttonStyle: '',
-    componentStyle: ''
-  })
 
 
-  // Save and load Desgin data from local storage
-
-
-  useEffect(() => {
-    try {
-      const savedDesignData = localStorage.getItem('projectDesignData')
-      if (savedDesignData) {
-        setDesignData(JSON.parse(savedDesignData))
-      }
-    } catch (error) {
-      console.log('Error loading design data: ', error)
-    }
-  }, [])
-
-
-  // What does this line do ??  
-
-  useEffect(() => {
-    localStorage.setItem('projectDesignData', JSON.stringify(designData))
-  }, [designData])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // Additional (Specific to Design.jsx)
+  // Empty
 
 
 
@@ -257,143 +109,23 @@ function Code() {
         <p className="code-subtitle">Generate your project blueprint and code structure</p>
       </div>
 
-      {/* Preview for Planning Data */}
-
-      <div className="preview-card">
-        <button
-          className={`preview-toggle ${showPlanningPreview ? 'active' : ''}`}
-          onClick={() => setshowPlanningPreview(!showPlanningPreview)}
-        >
-          <span className="toggle-icon">{showPlanningPreview ? '▼' : '▶'}</span>
-          {showPlanningPreview ? 'Hide Planning Data' : 'Show Planning Data'}
-        </button>
-
-        {showPlanningPreview && (
-
-
-          <div className="preview-content">
-
-            <div className="preview-grid">
-
-              <div className="preview-item">
-                <span className="preview-label">Frontend</span>
-                <span className="preview-value">{planningData.frontend || 'Not selected'}</span>
-              </div>
-
-
-
-              <div className="preview-item">
-                <span className="preview-label">Backend</span>
-                <span className="preview-value">{planningData.backend || 'Not selected'}</span>
-              </div>
-
-              <div className="preview-item">
-                <span className="preview-label">Database</span>
-                <span className="preview-value">{planningData.database || 'Not selected'}</span>
-              </div>
-
-
-
-              <div className="preview-item">
-                <span className="preview-label">Styling</span>
-                <span className="preview-value">{planningData.styling || 'Not selected'}</span>
-              </div>
-
-              <div className="preview-item">
-                <span className="preview-label">Libraries</span>
-                <span className="preview-value">{planningData.compLibraries || 'Not selected'}</span>
-              </div>
-
-              <div className="preview-item">
-                <span className="preview-label">Pages</span>
-                <span className="preview-value">{planningData.pages || 'Not selected'}</span>
-              </div>
-
-              <div className="preview-item features-preview">
-                <span className="preview-label">Features</span>
-
-                <div className="preview-features">
-                  {planningData.features.length > 0 ? (
-                    planningData.features.map((feature, index) => (
-                      <span key={index} className="feature-tag">{feature}</span>
-                    ))
-                  ) : (
-                    <span className="preview-value">None selected</span>
-                  )}
-                </div>
-
-              </div>
-
-
-
-
-
-
-            </div>
-          </div>
-
-
-
-
-        )}
-      </div>
-
-      {/* Preview for Design Data */}
-
-      <div className="preview-card">
-        <button
-          className={`preview-toggle ${showDesignPreview ? 'active' : ''}`}
-          onClick={() => setShowDesignPreview(!showDesignPreview)}
-        >
-          <span className="toggle-icon">{showDesignPreview ? '▼' : '▶'}</span>
-          {showDesignPreview ? 'Hide Design Data' : 'Show Design Data'}
-        </button>
-
-        {showDesignPreview && (
-          <div className="preview-content">
-            <div className="preview-grid">
-              <div className="preview-item">
-                <span className="preview-label">Colors</span>
-                <span className="preview-value">
-                  {[designData.primaryColor, designData.secondaryColor, designData.additionalColor]
-                    .filter(Boolean).join(', ') || 'Not selected'}
-                </span>
-              </div>
-
-              <div className="preview-item">
-                <span className="preview-label">Typography</span>
-                <span className="preview-value">
-                  {[designData.fontStyle, designData.fontSize]
-                    .filter(Boolean).join(' - ') || 'Not selected'}
-                </span>
-              </div>
-
-              <div className="preview-item">
-                <span className="preview-label">Navigation</span>
-                <span className="preview-value">{designData.navigationStyle || 'Not selected'}</span>
-              </div>
-
-              <div className="preview-item">
-                <span className="preview-label">Spacing</span>
-                <span className="preview-value">{designData.spacingPadding || 'Not selected'}</span>
-              </div>
-
-              <div className="preview-item">
-                <span className="preview-label">Button Style</span>
-                <span className="preview-value">{designData.buttonStyle || 'Not selected'}</span>
-              </div>
-
-              <div className="preview-item">
-                <span className="preview-label">Component Style</span>
-                <span className="preview-value">{designData.componentStyle || 'Not selected'}</span>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-
-
       {/* Preview for Code Data */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
       <div className="preview-card">
@@ -404,7 +136,6 @@ function Code() {
           <span className='toggle-icon'>{showCodePreview ? '▼' : '▶'}</span>
           {showCodePreview ? 'Hide Code Data' : 'Show Code Data'}
         </button>
-
 
         {showCodePreview && (
           <div className="preview-content">
@@ -423,6 +154,34 @@ function Code() {
           </div>
         )}
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -508,6 +267,9 @@ function Code() {
           <div className="save-section">
             <button className="save-button" onClick={saveCodeData}>
               Save Code Configuration
+            </button>
+            <button className="clear-button" onClick={clearCodeData}>
+              Clear Code Data
             </button>
           </div>
 

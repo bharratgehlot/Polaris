@@ -6,6 +6,7 @@ function Design() {
 
   // Working data with their state (what user is currently editing)
 
+
   const [designData, setDesignData] = useState({
     primaryColor: '',
     secondaryColor: '',
@@ -22,7 +23,6 @@ function Design() {
   // Saved data with their state (what's been explicitly saved)
 
 
-
   const [savedDesignData, setSavedDesignData] = useState({
     primaryColor: '',
     secondaryColor: '',
@@ -36,7 +36,14 @@ function Design() {
   })
 
 
-  // Load Design data from local storage
+
+
+  // State Management for the Design Data Preview
+
+  const [showDesignPreview, setShowDesignPreview] = useState(false)
+
+
+  // Load saved Design data from local storage
 
   useEffect(() => {
     try {
@@ -47,7 +54,7 @@ function Design() {
         setDesignData(parsedData)       // Set working state
       }
     } catch (error) {
-      console.log('Error loading Design data: ', error)
+      console.log('Error loading design data: ', error)
     }
   }, [])
 
@@ -64,150 +71,35 @@ function Design() {
     }
   }
 
-  // State Management for the Design Data Preview
 
-  const [showDesignPreview, setShowDesignPreview] = useState(false)
+  // Manual CLear Button
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  const [planningData, setPlanningData] = useState({
-    frontend: '',
-    backend: '',
-    database: '',
-    pages: '',
-    styling: '',
-    compLibraries: '',
-    features: []
-  })
-
-
-
-  // Save and load Planning data from local storage
-
-  useEffect(() => {
+  const clearDesignData = () => {
     try {
-      const savedData = localStorage.getItem('projectPlanningData')
-      if (savedData) {
-        setPlanningData(JSON.parse(savedData))
+      localStorage.removeItem('projectDesignData')
+      const emptyData = {
+        primaryColor: '',
+        secondaryColor: '',
+        additionalColor: '',
+        fontStyle: '',
+        fontSize: '',
+        navigationStyle: '',
+        spacingPadding: '',
+        buttonStyle: '',
+        componentStyle: ''
       }
+      setDesignData(emptyData)
+      setSavedDesignData(emptyData)
     } catch (error) {
-      console.log('Error loading planning data: ', error)
+      console.log('Error clearing design data: ', error)
     }
+  }
 
-  }, [])
 
 
 
 
-
-
-  // Preview Planning Data and manage their state when changed
-
-
-
-  const [showPlanningPreview, setshowPlanningPreview] = useState(false)
-
-  // Save and load Desgin data from local storage
-
-
-
-
-
-
-
-
-
-
-
-
-  // Saved data with their state (what's been explicitly saved)
-
-
-
-  /* What does this line do ??  
-
-  useEffect(() => {
-    localStorage.setItem('projectDesignData', JSON.stringify(designData))
-  }, [designData])
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // Additional (Specific to Design.jsx)
 
   // Color Options Array 1 
 
@@ -277,7 +169,6 @@ function Design() {
 
 
 
-
   return (
     <div className="design-container">
       <div className="design-header">
@@ -287,84 +178,11 @@ function Design() {
 
 
 
-      <div className="preview-card">
-        <button
-          className={`preview-toggle ${showPlanningPreview ? 'active' : ''}`}
-          onClick={() => setshowPlanningPreview(!showPlanningPreview)}
-        >
-          <span className="toggle-icon">{showPlanningPreview ? '▼' : '▶'}</span>
-          {showPlanningPreview ? 'Hide Planning Data' : 'Show Planning Data'}
-        </button>
-
-        {showPlanningPreview && (
-
-
-          <div className="preview-content">
-
-            <div className="preview-grid">
-
-              <div className="preview-item">
-                <span className="preview-label">Frontend</span>
-                <span className="preview-value">{planningData.frontend || 'Not selected'}</span>
-              </div>
-
-
-
-              <div className="preview-item">
-                <span className="preview-label">Backend</span>
-                <span className="preview-value">{planningData.backend || 'Not selected'}</span>
-              </div>
-
-              <div className="preview-item">
-                <span className="preview-label">Database</span>
-                <span className="preview-value">{planningData.database || 'Not selected'}</span>
-              </div>
-
-
-
-              <div className="preview-item">
-                <span className="preview-label">Styling</span>
-                <span className="preview-value">{planningData.styling || 'Not selected'}</span>
-              </div>
-
-              <div className="preview-item">
-                <span className="preview-label">Libraries</span>
-                <span className="preview-value">{planningData.compLibraries || 'Not selected'}</span>
-              </div>
-
-              <div className="preview-item">
-                <span className="preview-label">Pages</span>
-                <span className="preview-value">{planningData.pages || 'Not selected'}</span>
-              </div>
-
-              <div className="preview-item features-preview">
-                <span className="preview-label">Features</span>
-
-                <div className="preview-features">
-                  {planningData.features.length > 0 ? (
-                    planningData.features.map((feature, index) => (
-                      <span key={index} className="feature-tag">{feature}</span>
-                    ))
-                  ) : (
-                    <span className="preview-value">None selected</span>
-                  )}
-                </div>
-
-              </div>
 
 
 
 
 
-
-            </div>
-          </div>
-
-
-
-
-        )}
-      </div>
 
 
 
@@ -430,6 +248,14 @@ function Design() {
           </div>
         )}
       </div>
+
+
+
+
+
+
+
+
 
 
 
@@ -700,13 +526,13 @@ function Design() {
                   name="componentStyle"
                   value={style.value}
                   checked={designData.componentStyle === style.value}
-                  onChange={(e) =>{ 
-                    
+                  onChange={(e) => {
+
                     setDesignData({ ...designData, componentStyle: e.target.value })
                     console.log('designData.componentStyle =', e.target.value)
-                }
-                }
-                  
+                  }
+                  }
+
 
                 />
                 {/*onChange={(e) => handleColorChange('componentStyle', e.target.value)}*/}
@@ -725,12 +551,16 @@ function Design() {
             <button className="save-button" onClick={saveDesignData}>
               Save Design Data
             </button>
+            <button className="clear-button" onClick={clearDesignData}>
+              Clear Design Data
+            </button>
           </div>
 
         </div>
 
 
       </div>
+
 
 
 

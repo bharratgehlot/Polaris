@@ -2,25 +2,10 @@ import { useState, useEffect } from 'react'
 import './Planning.css'
 
 function Planning() {
-  //const frontendOptions = ['React', 'Vue', 'Angular', 'Svelte', 'Next.js', 'Nuxt.js', 'HTML, CSS, Javascript']
-  const backendOptions = ['None', 'Node.js', 'Python', 'Java', 'C#', '.NET', 'PHP', 'Go', 'Ruby on rails']
-  const databaseOptions = ['None', 'MongoDB', 'PostgreSQL', 'MySQL', 'SQLite', 'Redis', 'Firebase']
-  const featuresOptions = ['User Authentication', 'Payment Integration', 'Real-time Chat', 'File Upload', 'Email Notifications', 'Search Functionality', 'Admin Dashboard', 'API Integration', 'Dark Mode', 'Mobile Responsive']
-
-  const feedbackObjectTech = {
-     'React+Node.js': {message: '🚀 Excellent choice! Popular and well-supported stack', type: 'great'},
-     'Angular+Java': { message: '🏢 Enterprise-grade stack, perfect for large apps', type: 'great' },
-     'Vanilla JavaScript+Ruby on rails': { message: '⚠️ Uncommon combo, consider modern frontend framework', type: 'warning' }
-  }
-
-  const feedbackObjectDatabase = {
-    'MySQL': {message: "Excellent Choice Brother", type: 'great'},
-    'PostgreSQL': {message: "Enterprise level stability", type: 'great'},
-    'MongoDB': {message: "Great for MERN Stack", type: 'great'}
-  }
 
 
-  const [showPreview, setShowPreview] = useState(false)
+  // Working data with their state (what user is currently editing)
+
   const [planningData, setPlanningData] = useState({
     frontend: '',
     backend: '',
@@ -31,16 +16,87 @@ function Planning() {
     features: []
   })
 
+
+
+
+  // Saved data with their state (what's been explicitly saved)
+
+
+
+
+
+  const [savedPlanningData, setSavedPlanningData] = useState({
+    frontend: '',
+    backend: '',
+    database: '',
+    pages: '',
+    styling: '',
+    compLibraries: '',
+    features: []
+  })
+
+
+
+
+  // State Management for the Planning Data Preview
+
+  const [showPlanningPreview, setShowPlanningPreview] = useState(false)
+
+
+
+  // Load saved planning data from local storage
+
   useEffect(() => {
-    const savedData = localStorage.getItem('projectPlanningData')
-    if (savedData) {
-      setPlanningData(JSON.parse(savedData))
+    try {
+      const savedPlanningData = localStorage.getItem('projectPlanningData')
+      if (savedPlanningData) {
+        const parsedData = JSON.parse(savedPlanningData)
+        setSavedPlanningData(parsedData)  // Set saved state
+        setPlanningData(parsedData)       // Set working state
+      }
+    } catch (error) {
+      console.log('Error loading planning data: ', error)
     }
   }, [])
 
-  useEffect(() => {
-    localStorage.setItem('projectPlanningData', JSON.stringify(planningData))
-  }, [planningData])
+
+  // Manual save function for code data
+
+
+  const savePlanningData = () => {
+    try {
+      localStorage.setItem('projectPlanningData', JSON.stringify(planningData))
+      setSavedPlanningData(planningData)
+    } catch (error) {
+      console.log('Error saving planning data: ', error)
+    }
+  }
+
+  // Manual CLear Button
+
+  const clearPlanningData = () => {
+    try {
+      localStorage.removeItem('projectPlanningData')
+      const emptyData = {
+        frontend: '',
+        backend: '',
+        database: '',
+        pages: '',
+        styling: '',
+        compLibraries: '',
+        features: []
+      }
+      setPlanningData(emptyData)
+      setSavedPlanningData(emptyData)
+    } catch (error) {
+      console.log('Error clearing planning data: ', error)
+    }
+  }
+
+
+
+
+  // Additional (Specific to Planning.jsx)
 
   const handleSelectChange = (field, value) => {
     setPlanningData(prev => ({ ...prev, [field]: value }))
@@ -55,20 +111,41 @@ function Planning() {
     }))
   }
 
+
+
+  //const frontendOptions = ['React', 'Vue', 'Angular', 'Svelte', 'Next.js', 'Nuxt.js', 'HTML, CSS, Javascript']
+  const backendOptions = ['None', 'Node.js', 'Python', 'Java', 'C#', '.NET', 'PHP', 'Go', 'Ruby on rails']
+  const databaseOptions = ['None', 'MongoDB', 'PostgreSQL', 'MySQL', 'SQLite', 'Redis', 'Firebase']
+  const featuresOptions = ['User Authentication', 'Payment Integration', 'Real-time Chat', 'File Upload', 'Email Notifications', 'Search Functionality', 'Admin Dashboard', 'API Integration', 'Dark Mode', 'Mobile Responsive']
+
+  const feedbackObjectTech = {
+    'React+Node.js': { message: '🚀 Excellent choice! Popular and well-supported stack', type: 'great' },
+    'Angular+Java': { message: '🏢 Enterprise-grade stack, perfect for large apps', type: 'great' },
+    'Vanilla JavaScript+Ruby on rails': { message: '⚠️ Uncommon combo, consider modern frontend framework', type: 'warning' }
+  }
+
+  const feedbackObjectDatabase = {
+    'MySQL': { message: "Excellent Choice Brother", type: 'great' },
+    'PostgreSQL': { message: "Enterprise level stability", type: 'great' },
+    'MongoDB': { message: "Great for MERN Stack", type: 'great' }
+  }
+
+
+
   const getfeedbackObjectTech = () => {
     if (!planningData.frontend || !planningData.backend) return null
-    
+
     const key = `${planningData.frontend}+${planningData.backend}`
-    return feedbackObjectTech[key] || { 
-      message: '💡 Interesting combination! Make sure they work well together', 
-      type: 'neutral' 
+    return feedbackObjectTech[key] || {
+      message: '💡 Interesting combination! Make sure they work well together',
+      type: 'neutral'
     }
   }
 
 
 
   const getfeedbackObjectDatabase = () => {
-    if (!planningData.database) return null 
+    if (!planningData.database) return null
 
     const key = `${planningData.database}`
     return feedbackObjectDatabase[key] || {
@@ -79,13 +156,15 @@ function Planning() {
 
 
   const getfeedbackObjectFeatures = () => {
-    if(planningData.features.length === 0) return null
+    if (planningData.features.length === 0) return null
 
     const key = `${planningData.features}`
     return {
       message: "TIP: Don't select more than three if you gonna use AI. It will be messy. You can add more features later"
     }
   }
+
+
 
   return (
     <div className="planning-container">
@@ -96,16 +175,31 @@ function Planning() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <div className="preview-card">
         <button
-          className={`preview-toggle ${showPreview ? 'active' : ''}`}
-          onClick={() => setShowPreview(!showPreview)}
+          className={`preview-toggle ${showPlanningPreview ? 'active' : ''}`}
+          onClick={() => setShowPlanningPreview(!showPlanningPreview)}
         >
-          <span className="toggle-icon">{showPreview ? '▼' : '▶'}</span>
-          {showPreview ? 'Hide Preview' : 'Show Preview'}
+          <span className="toggle-icon">{showPlanningPreview ? '▼' : '▶'}</span>
+          {showPlanningPreview ? 'Hide Preview' : 'Show Preview'}
         </button>
 
-        {showPreview && (
+        {showPlanningPreview && (
 
           <div className="preview-content">
 
@@ -114,42 +208,42 @@ function Planning() {
 
               <div className="preview-item">
                 <span className="preview-label">Frontend</span>
-                <span className="preview-value">{planningData.frontend || 'Not selected'}</span>
+                <span className="preview-value">{savedPlanningData.frontend || 'Not selected'}</span>
               </div>
 
               <div className="preview-item">
                 <span className="preview-label">Backend</span>
-                <span className="preview-value">{planningData.backend || 'Not selected'}</span>
+                <span className="preview-value">{savedPlanningData.backend || 'Not selected'}</span>
               </div>
 
               <div className="preview-item">
                 <span className="preview-label">Database</span>
-                <span className="preview-value">{planningData.database || 'Not selected'}</span>
+                <span className="preview-value">{savedPlanningData.database || 'Not selected'}</span>
               </div>
 
 
 
               <div className="preview-item">
                 <span className="preview-label">Styling</span>
-                <span className="preview-value">{planningData.styling || 'Not selected'}</span>
+                <span className="preview-value">{savedPlanningData.styling || 'Not selected'}</span>
               </div>
 
               <div className="preview-item">
                 <span className="preview-label">Libraries</span>
-                <span className="preview-value">{planningData.compLibraries || 'Not selected'}</span>
+                <span className="preview-value">{savedPlanningData.compLibraries || 'Not selected'}</span>
               </div>
 
               <div className="preview-item">
                 <span className="preview-label">Pages</span>
-                <span className="preview-value">{planningData.pages || 'Not selected'}</span>
+                <span className="preview-value">{savedPlanningData.pages || 'Not selected'}</span>
               </div>
 
               <div className="preview-item features-preview">
                 <span className="preview-label">Features</span>
 
                 <div className="preview-features">
-                  {planningData.features.length > 0 ? (
-                    planningData.features.map((feature, index) => (
+                  {savedPlanningData.features.length > 0 ? (
+                    savedPlanningData.features.map((feature, index) => (
                       <span key={index} className="feature-tag">{feature}</span>
                     ))
                   ) : (
@@ -252,13 +346,13 @@ function Planning() {
 
 
             </div>
-              
 
-              {planningData.frontend && planningData.backend && (
-                <div className="tech-feedback">
+
+            {planningData.frontend && planningData.backend && (
+              <div className="tech-feedback">
                 {getfeedbackObjectTech()?.message}
-                </div>
-              )}
+              </div>
+            )}
 
 
 
@@ -277,11 +371,11 @@ function Planning() {
             </div>
 
 
-              {planningData.database && (
-                <div className="tech-feedback">
+            {planningData.database && (
+              <div className="tech-feedback">
                 {getfeedbackObjectDatabase()?.message}
-                </div>
-              )}
+              </div>
+            )}
 
 
           </div>
@@ -385,11 +479,22 @@ function Planning() {
               </label>
             ))}
           </div>
-                {planningData.features.length > 2 && (
-                <div className="tech-feedback">
-                {getfeedbackObjectFeatures()?.message}
-                </div>
-              )}
+          {planningData.features.length > 2 && (
+            <div className="tech-feedback">
+              {getfeedbackObjectFeatures()?.message}
+            </div>
+          )}
+
+          <div className="save-section">
+            <button className="save-button" onClick={savePlanningData}>
+              Save Planning Data
+            </button>
+            <button className="clear-button" onClick={clearPlanningData}>
+              Clear Planning Data
+            </button>
+          </div>
+
+
 
         </div>
       </div>
