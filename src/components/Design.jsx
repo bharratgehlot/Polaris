@@ -2,7 +2,13 @@ import { useState, useEffect } from 'react'
 import './Design.css'
 
 function Design() {
+
+  // Color Options Array
+
   const colorOptions = ['Red', 'Blue', 'Green', 'Purple', 'Orange', 'Pink', 'Yellow', 'Teal', 'Indigo', 'Gray', 'Black', 'White']
+
+
+  // Font styling code
 
   const getFontClass = (fontName) => {
     const fontMap = {
@@ -20,6 +26,8 @@ function Design() {
     return fontMap[fontName] || ''
   }
 
+  // Font Sizing code 
+
   const getFontSizeClass = (fontSize) => {
     const sizeMap = {
       '12px': 'size-12px',
@@ -30,7 +38,10 @@ function Design() {
     }
     return sizeMap[fontSize] || ''
   }
-const [showDesignPreview, setShowDesignPreview] = useState(false)
+
+  // Preview Section (Design)
+
+  const [showDesignPreview, setShowDesignPreview] = useState(false)
   const [showPlanningPreview, setshowPlanningPreview] = useState(false)
   const [planningData, setPlanningData] = useState({
     frontend: '',
