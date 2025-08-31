@@ -1,7 +1,14 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom'
 import "./Code.css";
 
 function Code() {
+
+  // for navigation between components
+
+  const navigate = useNavigate();
+
+
   // Working data with their state (what user is currently editing)
 
   const [codeData, setCodeData] = useState({
@@ -173,14 +180,16 @@ function Code() {
       <div className="next-section">
          <button
           className="prev-button"
-          onClick={() => (window.location.href = "/design")}
+         onClick={() => navigate('/design')}   // prev
+
+
+
         >
           ← Back to Design
         </button>
         <button
           className="next-button"
-          // amazonq-ignore-next-line
-          onClick={() => (window.location.href = "/build")}
+         onClick={() => navigate('/build')}    // next
         >
           Continue to Build →
         </button>

@@ -1,8 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
+import { useNavigate } from 'react-router-dom'
 import "./Global.css"
 import "./Build.css";
 
 function Build() {
+
+
+  // for navigation between components
+
+  const navigate = useNavigate();
 
 
   // Working data with their state (what user is currently editing)
@@ -389,14 +395,15 @@ function Build() {
       <div className="next-section">
         <button
           className="prev-button"
-          onClick={() => (window.location.href = "/code")}
+          onClick={() => navigate('/code')}     // prev
+
+
         >
           ← Back to Code
         </button>
         <button
           className="next-button"
-          // amazonq-ignore-next-line
-          onClick={() => (window.location.href = "/export")}
+          onClick={() => navigate('/export')}   // next
         >
           Continue to Export →
         </button>

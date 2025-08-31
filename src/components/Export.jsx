@@ -1,8 +1,16 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom'
 import "./Global.css";
 import "./Export.css";
 
 function Export() {
+
+
+    // for navigation between components
+
+  const navigate = useNavigate();
+
+
   // State for all project data
   const [allProjectData, setAllProjectData] = useState({
     planning: {},
@@ -216,13 +224,15 @@ function Export() {
       <div className="next-section">
         <button
           className="prev-button"
-          onClick={() => (window.location.href = "/build")}
+          onClick={() => navigate('/build')}    // prev
+   
+
         >
           ← Back to Build
         </button>
         <button
           className="next-button"
-          onClick={() => (window.location.href = "/")}
+        onClick={() => navigate('/')}         // home
         >
           🏠 Back to Home
         </button>

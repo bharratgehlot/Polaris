@@ -1,7 +1,13 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Planning.css'
 
 function Planning() {
+
+    // for navigation between components
+
+  const navigate = useNavigate();
+
 
 
   // Working data with their state (what user is currently editing)
@@ -500,17 +506,11 @@ function Planning() {
       </div>
 
       <div className="next-section">
-        <button
-          className="prev-button"
-          onClick={() => (window.location.href = "")}
-        >
-          ← Back to Nothing
-        </button>
-
-
+      
         <button
           className="next-button"
-          onClick={() => window.location.href = '/design'}
+          onClick={() => navigate('/design')}
+
         >
           Continue to Design →
         </button>
