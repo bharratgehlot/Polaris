@@ -1,6 +1,6 @@
 # Polaris - Your all in one Project Planner
 
-When you are creating a new project for fun, its too much hurdle to select what and what not, for example which tech stack to use, what is compitable with other tech or 
+When you are creating a new project for fun, its too much hurdle to select what and what not, for example which tech stack to use, what is compitable with other tech or
 not, desgin elements, project scope.
 
 Ploaris solves it all and give you a single pdf with all the project details.

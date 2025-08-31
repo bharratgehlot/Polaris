@@ -170,10 +170,10 @@ function Design() {
 
 
   return (
-    <div className="design-container">
-      <div className="design-header">
-        <h2 className="design-title">🎨 Design System</h2>
-        <p className="design-subtitle">Define your project's visual identity</p>
+    <div className="page-container">
+      <div className="page-header">
+        <h2 className="page-title">🎨 Design System</h2>
+        <p className="page-subtitle">Define your project's visual identity</p>
       </div>
 
 
@@ -281,10 +281,10 @@ function Design() {
 
 
 
-      <div className="design-sections">
+      <div className="page-sections">
 
 
-        <div className="design-card">
+        <div className="page-card">
           <div className="card-header">
             <h3 className="card-title">🎨 Color Palette</h3>
             <p className="card-description">Choose your brand colors</p>
@@ -341,10 +341,32 @@ function Design() {
                 <div className={`color-preview ${designData.additionalColor.toLowerCase()}`}></div>
               )}
             </div>
+            
           </div>
         </div>
 
-        <div className="design-card">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div className="page-card">
           <div className="card-header">
             <h3 className="card-title">📝 Typography</h3>
             <p className="card-description">Set your text styles</p>
@@ -404,7 +426,7 @@ function Design() {
 
 
 
-        <div className="design-card">
+        <div className="page-card">
           <div className="card-header">
             <h3 className="card-title">🧭 Navigation</h3>
             <p className="card-description">Choose navigation style</p>
@@ -439,7 +461,7 @@ function Design() {
 
 
 
-        <div className="design-card">
+        <div className="page-card">
           <div className="card-header">
             <h3 className="card-title">📏 Spacing</h3>
             <p className="card-description">Define layout density</p>
@@ -472,7 +494,7 @@ function Design() {
 
 
 
-        <div className="design-card">
+        <div className="page-card">
           <div className="card-header">
             <h3 className="card-title">🔘 Button Style</h3>
             <p className="card-description">Choose button appearance</p>
@@ -505,7 +527,7 @@ function Design() {
           </div>
         </div>
 
-        <div className="design-card">
+        <div className="page-card">
           <div className="card-header">
             <h3 className="card-title">📦 Component Style</h3>
             <p className="card-description">Set overall design language</p>
@@ -565,6 +587,12 @@ function Design() {
 
 
       <div className="next-section">
+         <button
+          className="prev-button"
+          onClick={() => (window.location.href = "/planning")}
+        >
+          ← Back to Planning
+        </button>
         <button
           className="next-button"
           // amazonq-ignore-next-line

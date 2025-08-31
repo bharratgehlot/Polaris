@@ -1,218 +1,134 @@
-import { useState, useEffect } from 'react'
-import './Code.css'
+import { useState, useEffect } from "react";
+import "./Code.css";
 
 function Code() {
-
-
   // Working data with their state (what user is currently editing)
 
   const [codeData, setCodeData] = useState({
-    ideSelector: '',
-    durationOfCode: ''
-  })
-
-
-
-
-
-
-
-
+    ideSelector: "",
+    durationOfCode: "",
+  });
 
   // Saved data with their state (what's been explicitly saved)
 
-
-
-
-
-
-
-
-
-
   const [savedCodeData, setSavedCodeData] = useState({
-    ideSelector: '',
-    durationOfCode: ''
-  })
-
-
-
+    ideSelector: "",
+    durationOfCode: "",
+  });
 
   // State Management for the Code Data Preview
 
-  const [showCodePreview, setShowCodePreview] = useState(false)
-
-
-
+  const [showCodePreview, setShowCodePreview] = useState(false);
 
   // Load saved Code data from local storage
 
   useEffect(() => {
     try {
-      const savedCodeData = localStorage.getItem('projectCodeData')
+      const savedCodeData = localStorage.getItem("projectCodeData");
       if (savedCodeData) {
-        const parsedData = JSON.parse(savedCodeData)
-        setSavedCodeData(parsedData)
-        setCodeData(parsedData)
+        const parsedData = JSON.parse(savedCodeData);
+        setSavedCodeData(parsedData);
+        setCodeData(parsedData);
       }
     } catch (error) {
-      console.log('Error loading code data: ', error)
+      console.log("Error loading code data: ", error);
     }
-  }, [])
-
+  }, []);
 
   // Manual save function for code data
 
   const saveCodeData = () => {
     try {
-      localStorage.setItem('projectCodeData', JSON.stringify(codeData))
-      setSavedCodeData(codeData)
+      localStorage.setItem("projectCodeData", JSON.stringify(codeData));
+      setSavedCodeData(codeData);
     } catch (error) {
-      console.log('Error saving code data: ', error)
+      console.log("Error saving code data: ", error);
     }
-  }
+  };
 
   // Manual CLear Button
 
-
   const clearCodeData = () => {
     try {
-      localStorage.removeItem('projectCodeData')
+      localStorage.removeItem("projectCodeData");
       const emptyData = {
-        ideSelector: '',
-        durationOfCode: ''
-      }
-      setCodeData(emptyData)
-      setSavedCodeData(emptyData)
+        ideSelector: "",
+        durationOfCode: "",
+      };
+      setCodeData(emptyData);
+      setSavedCodeData(emptyData);
     } catch (error) {
-      console.log('Error clearing code data: ', error)
+      console.log("Error clearing code data: ", error);
     }
-  }
-
-
-
-
-
-
-
-
+  };
 
   // Additional (Specific to Design.jsx)
   // Empty
 
-
-
   return (
-    <div className="code-container">
-      <div className="code-header">
-        <h2 className="code-title">💻 Code Generation</h2>
-        <p className="code-subtitle">Generate your project blueprint and code structure</p>
+    <div className="page-container">
+      <div className="page-header">
+        <h2 className="page-title">💻 Code Generation</h2>
+        <p className="page-subtitle">
+          Generate your project blueprint and code structure
+        </p>
       </div>
 
       {/* Preview for Code Data */}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       <div className="preview-card">
         <button
-          className={`preview-toggle ${showCodePreview ? 'active' : ''}`}
+          className={`preview-toggle ${showCodePreview ? "active" : ""}`}
           onClick={() => setShowCodePreview(!showCodePreview)}
         >
-          <span className='toggle-icon'>{showCodePreview ? '▼' : '▶'}</span>
-          {showCodePreview ? 'Hide Code Data' : 'Show Code Data'}
+          <span className="toggle-icon">{showCodePreview ? "▼" : "▶"}</span>
+          {showCodePreview ? "Hide Code Data" : "Show Code Data"}
         </button>
 
         {showCodePreview && (
           <div className="preview-content">
             <div className="preview-grid">
-
               <div className="preview-item">
                 <span className="preview-label">IDE</span>
-                <span className="preview-value">{savedCodeData.ideSelector || 'Not saved'}</span>
+                <span className="preview-value">
+                  {savedCodeData.ideSelector || "Not saved"}
+                </span>
               </div>
 
               <div className="preview-item">
                 <span className="preview-label">Duration</span>
-                <span className="preview-value">{savedCodeData.durationOfCode ? `${savedCodeData.durationOfCode} weeks` : 'Not saved'}</span>
+                <span className="preview-value">
+                  {savedCodeData.durationOfCode
+                    ? `${savedCodeData.durationOfCode} weeks`
+                    : "Not saved"}
+                </span>
               </div>
             </div>
           </div>
         )}
       </div>
 
+   {/* MAIN SECTION */}
 
 
+      <div className="page-sections">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <div className="code-sections">
-        <div className="code-card">
+        <div className="page-card">
           <div className="card-header">
             <h3 className="card-title">⚙️ Code Configuration</h3>
-            <p className="card-description">Configure your development environment</p>
+            <p className="card-description">
+              Configure your development environment
+            </p>
           </div>
-
-
-
-
-
-
-
-
-
 
           <div className="typography-grid">
             <div className="input-group">
               <label className="input-label">IDE Selector</label>
               <select
                 value={codeData.ideSelector}
-                onChange={(e) => setCodeData({ ...codeData, ideSelector: e.target.value })}
+                onChange={(e) =>
+                  setCodeData({ ...codeData, ideSelector: e.target.value })
+                }
               >
                 <option value="">Select IDE</option>
                 <option value="vscode">VS Code</option>
@@ -223,25 +139,15 @@ function Code() {
             </div>
           </div>
 
-
-
-
-
-
-
-
-
-
-
-
           <br></br>
           <div className="typography-grid">
-
             <div className="input-group">
               <label className="input-label">Duration of Code (weeks)</label>
               <select
                 value={codeData.durationOfCode}
-                onChange={(e) => setCodeData({ ...codeData, durationOfCode: e.target.value })}
+                onChange={(e) =>
+                  setCodeData({ ...codeData, durationOfCode: e.target.value })
+                }
               >
                 <option value="">Select Duration</option>
                 <option value="1">1 week</option>
@@ -253,55 +159,34 @@ function Code() {
             </div>
           </div>
 
-
-
-
-
-
-
-
-
-
-
-
           <div className="save-section">
             <button className="save-button" onClick={saveCodeData}>
-              Save Code Configuration
+              Save Code Data
             </button>
             <button className="clear-button" onClick={clearCodeData}>
               Clear Code Data
             </button>
           </div>
-
-
         </div>
       </div>
 
-
-
-
       <div className="next-section">
+         <button
+          className="prev-button"
+          onClick={() => (window.location.href = "/design")}
+        >
+          ← Back to Design
+        </button>
         <button
           className="next-button"
           // amazonq-ignore-next-line
-          onClick={() => window.location.href = '/build'}
+          onClick={() => (window.location.href = "/build")}
         >
           Continue to Build →
         </button>
       </div>
-
-
-
-
-
-
-
-
-
-
-
     </div>
-  )
+  );
 }
 
-export default Code
+export default Code;

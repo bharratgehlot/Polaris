@@ -167,10 +167,10 @@ function Planning() {
 
 
   return (
-    <div className="planning-container">
-      <div className="planning-header">
-        <h2 className="planning-title">📋 Project Planning</h2>
-        <p className="planning-subtitle">Define your project's technical foundation</p>
+    <div className="page-container">
+      <div className="page-header">
+        <h2 className="page-title">📋 Project Planning</h2>
+        <p className="page-subtitle">Define your project's technical foundation</p>
       </div>
 
 
@@ -287,8 +287,8 @@ function Planning() {
 
 
 
-      <div className="planning-sections">
-        <div className="planning-card">
+      <div className="page-sections">
+        <div className="page-card">
           <div className="card-header">
             <h3 className="card-title">⚡ Tech Stack</h3>
             <p className="card-description">Choose your core technologies</p>
@@ -381,7 +381,7 @@ function Planning() {
           </div>
         </div>
 
-        <div className="planning-card">
+        <div className="page-card">
           <div className="card-header">
             <h3 className="card-title">🎨 Styling & UI</h3>
             <p className="card-description">Select styling frameworks and libraries</p>
@@ -460,7 +460,7 @@ function Planning() {
           </div>
         </div>
 
-        <div className="planning-card">
+        <div className="page-card">
           <div className="card-header">
             <h3 className="card-title">🚀 Features</h3>
             <p className="card-description">Select the features you need</p>
@@ -500,6 +500,14 @@ function Planning() {
       </div>
 
       <div className="next-section">
+        <button
+          className="prev-button"
+          onClick={() => (window.location.href = "")}
+        >
+          ← Back to Nothing
+        </button>
+
+
         <button
           className="next-button"
           onClick={() => window.location.href = '/design'}
