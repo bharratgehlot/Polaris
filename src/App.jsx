@@ -19,6 +19,29 @@ function AppContent() {
   const [projectName, setProjectName] = useState("");
   const [projectDescription, setProjectDescription] = useState("");
 
+  // Checks previously stored data
+
+  const hasStoredData = () => {
+    return (
+      localStorage.getItem("projectName") ||
+      localStorage.getItem("projectDescription") ||
+      localStorage.getItem("projectPlanningData") ||
+      localStorage.getItem("projectDesignData") ||
+      localStorage.getItem("projectCodeData") ||
+      localStorage.getItem("projectBuildData")
+    );
+  };
+
+  // Clear button for previous data cleaning
+
+  const clearPreviousData = () => {
+    localStorage.clear();
+    setProjectName('');
+    setProjectDescription('');
+    alert('All previous data cleared');
+  };
+
+
   // saving project name and description to localstorage
 
   const handleStartBuilding = (e) => {
@@ -68,6 +91,19 @@ function AppContent() {
               maxLength={500}
             />
           </div>
+
+          {hasStoredData() && (
+            <div>
+              <button 
+                className="build-now" 
+                onClick={clearPreviousData}
+                style={{ backgroundColor: '#dc3545', marginBottom: '10px' }}
+              >
+                Clear Previous Data
+              </button>
+            </div>
+          )}
+
 
           <div>
             <Link to="/planning">

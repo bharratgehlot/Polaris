@@ -5,9 +5,7 @@ import "./Export.css";
 
 function Export() {
 
-   // Project Name Variable 
 
-  const projectName = localStorage.getItem("projectName") || "your project";
 
 
     // for navigation between components
@@ -47,17 +45,19 @@ function Export() {
   // Export/Download function
   const exportProject = () => {
     const projectBlueprint = {
-      projectName: "Polaris Project",
+      projectName: localStorage.getItem('projectData') || 'Project X',
+      projectDescription: localStorage.getItem('prokectDescription') || 'An web application',
       timestamp: new Date().toISOString(),
       ...allProjectData
     };
 
+    const projectName = localStorage.getItem('projectName') || 'Project X';
     const dataStr = JSON.stringify(projectBlueprint, null, 2);
     const dataBlob = new Blob([dataStr], { type: 'application/json' });
     const url = URL.createObjectURL(dataBlob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'project-blueprint.json';
+    link.download = `project-${projectName}-blueprint.json`;
     link.click();
   };
 
