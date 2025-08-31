@@ -14,23 +14,7 @@ body {
   min-height: 100vh;
 }
 
-.polaris_logo {
-  width: 300px;
-  height: 300px;
-  /*clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);*/
-  clip-path: polygon(
-    50% 0%,
-    61% 35%,
-    98% 35%,
-    68% 57%,
-    79% 91%,
-    50% 70%,
-    21% 91%,
-    32% 57%,
-    2% 35%,
-    39% 35%
-  );
-}
+
 
 #root {
   text-align: center;
@@ -133,4 +117,41 @@ nav a:hover {
   button {
     background-color: #f9f9f9;
   }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+
+.polaris_logo {
+  width: 300px;
+  height: 300px;
+  clip-path: polygon(
+    50% 0%,
+    63% 33%,
+    100% 33%,
+    70% 58%,
+    82% 92%,
+    50% 72%,
+    18% 92%,
+    30% 58%,
+    0% 33%,
+    37% 33%
+  );
+}
+
+.polaris_logo.spinning {
+  animation: spin 2s ease-in-out;
+}
+
+.polaris_image {
+  width: 100%;
+  height: 100%;
+}
+
+.polaris_logo.spinning .polaris_image {
+  animation: spin 2s ease-in-out reverse;
 }

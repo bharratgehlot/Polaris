@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Build from "./components/Build";
 import Code from "./components/Code";
 import Design from "./components/Design";
 import Export from "./components/Export";
 import Planning from "./components/Planning";
-import polarisLogo from "./assets/polaris_logo.png";
+import polarisLogo from "./assets/polaris_logo_2.png";
 import {
   BrowserRouter,
   Routes,
@@ -32,15 +32,28 @@ function AppContent() {
     );
   };
 
+  // Logo Spins
+
+  const [isSpinning, setIsSpinning] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsSpinning(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleLogoClick = () => {
+    setIsSpinning(true);
+    setTimeout(() => setIsSpinning(false), 2000);
+  };
+
   // Clear button for previous data cleaning
 
   const clearPreviousData = () => {
     localStorage.clear();
-    setProjectName('');
-    setProjectDescription('');
-    alert('All previous data cleared');
+    setProjectName("");
+    setProjectDescription("");
+    alert("All previous data cleared");
   };
-
 
   // saving project name and description to localstorage
 
@@ -64,13 +77,18 @@ function AppContent() {
     <>
       {isHome && (
         <>
-          <div>
+          <div
+            className={`polaris_logo ${isSpinning ? "spinning" : ""}`}
+            onClick={handleLogoClick}
+            style={{ cursor: "pointer" }}
+          >
             <img
               src={polarisLogo}
-              className="polaris_logo"
+              className="polaris_image"
               alt="Polaris logo"
             />
           </div>
+
           <h1>Polaris</h1>
           <br></br>
 
@@ -94,16 +112,15 @@ function AppContent() {
 
           {hasStoredData() && (
             <div>
-              <button 
-                className="build-now" 
+              <button
+                className="build-now"
                 onClick={clearPreviousData}
-                style={{ backgroundColor: '#dc3545', marginBottom: '10px' }}
+                style={{ backgroundColor: "#dc3545", marginBottom: "10px" }}
               >
                 Clear Previous Data
               </button>
             </div>
           )}
-
 
           <div>
             <Link to="/planning">
