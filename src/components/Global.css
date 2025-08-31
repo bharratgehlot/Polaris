@@ -252,3 +252,11 @@
   border-color: #4299e1;
 }
 
+/* 6. Grid Layout */
+
+.grid-responsive { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+  gap: 0.75rem; 
+  padding: 1.25rem; 
+}

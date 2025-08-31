@@ -189,7 +189,7 @@ function Build() {
 
 
 
-          <div className="build-grid-1">
+          <div className="grid-responsive">
 
             {/* ITEM 1 */}
 
@@ -281,7 +281,7 @@ function Build() {
 
 
 
-          <div className="build-grid-1">
+          <div className="grid-responsive">
 
 
 
