@@ -4,6 +4,10 @@ import './Design.css'
 
 function Design() {
 
+   // Project Name Variable 
+
+  const projectName = localStorage.getItem("projectName") || "your project";
+
 
     // for navigation between components
 
@@ -180,7 +184,7 @@ function Design() {
     <div className="page-container">
       <div className="page-header">
         <h2 className="page-title">🎨 Design System</h2>
-        <p className="page-subtitle">Define your project's visual identity</p>
+        <p className="page-subtitle"> Set {projectName}'s look & feel</p>
       </div>
 
 

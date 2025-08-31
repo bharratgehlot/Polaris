@@ -4,7 +4,12 @@ import './Planning.css'
 
 function Planning() {
 
-    // for navigation between components
+
+  // Project Name Variable 
+
+  const projectName = localStorage.getItem("projectName") || "your project";
+
+  // for navigation between components
 
   const navigate = useNavigate();
 
@@ -176,7 +181,8 @@ function Planning() {
     <div className="page-container">
       <div className="page-header">
         <h2 className="page-title">📋 Project Planning</h2>
-        <p className="page-subtitle">Define your project's technical foundation</p>
+        <p className="page-subtitle">Build {projectName}'s foundation</p>
+
       </div>
 
 
@@ -506,7 +512,7 @@ function Planning() {
       </div>
 
       <div className="next-section">
-      
+
         <button
           className="next-button"
           onClick={() => navigate('/design')}

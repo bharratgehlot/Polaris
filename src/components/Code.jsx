@@ -4,6 +4,10 @@ import "./Code.css";
 
 function Code() {
 
+   // Project Name Variable 
+
+  const projectName = localStorage.getItem("projectName") || "your project";
+
   // for navigation between components
 
   const navigate = useNavigate();
@@ -77,7 +81,7 @@ function Code() {
       <div className="page-header">
         <h2 className="page-title">💻 Code Generation</h2>
         <p className="page-subtitle">
-          Generate your project blueprint and code structure
+          Build {projectName}'s code plan
         </p>
       </div>
 

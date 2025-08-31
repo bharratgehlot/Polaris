@@ -5,6 +5,10 @@ import "./Build.css";
 
 function Build() {
 
+   // Project Name Variable 
+
+  const projectName = localStorage.getItem("projectName") || "your project";
+
 
   // for navigation between components
 
@@ -91,7 +95,7 @@ function Build() {
     <div className="page-container">
       <div className="page-header">
         <h2 className="page-title">⚙️ Build Configuration</h2>
-        <p className="page-subtitle">Configure your build and deployment</p>
+        <p className="page-subtitle">Take {projectName} live</p>
       </div>
 
 

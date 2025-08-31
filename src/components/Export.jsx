@@ -5,6 +5,10 @@ import "./Export.css";
 
 function Export() {
 
+   // Project Name Variable 
+
+  const projectName = localStorage.getItem("projectName") || "your project";
+
 
     // for navigation between components
 
@@ -61,7 +65,7 @@ function Export() {
     <div className="page-container">
       <div className="page-header">
         <h2 className="page-title">📦 Export Project</h2>
-        <p className="page-subtitle">Review and export your complete project blueprint</p>
+        <p className="page-subtitle">Review and export your project blueprint</p>
       </div>
 
       {/* Complete Project Preview */}

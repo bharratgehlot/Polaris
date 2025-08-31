@@ -40,3 +40,7 @@ index.html => Checked
 Feature Ideas:
 
 // Each componet have some message that describe functionalities of the page when user visits first time.
+
+Build Command:
+
+npm run build
