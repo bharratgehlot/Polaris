@@ -8,7 +8,7 @@ function Export() {
 
 
 
-    // for navigation between components
+  // for navigation between components
 
   const navigate = useNavigate();
 
@@ -80,7 +80,7 @@ function Export() {
 
         {showAllPreview && (
           <div className="preview-content">
-            
+
             {/* Planning Section */}
             <div className="page-card" style={{ marginBottom: '1rem' }}>
               <div className="card-header">
@@ -194,10 +194,20 @@ function Export() {
                   <span className="preview-label">Build Tool</span>
                   <span className="preview-value">{allProjectData.build.buildTool || 'Not set'}</span>
                 </div>
+
                 <div className="preview-item">
-                  <span className="preview-label">Hosting</span>
-                  <span className="preview-value">{allProjectData.build.hosting || 'Not set'}</span>
+                  <span className="preview-label">Frontend Hosting</span>
+                  <span className="preview-value">{allProjectData.build.frontEndHosting || 'Not set'}</span>
                 </div>
+                <div className="preview-item">
+                  <span className="preview-label">Backend Hosting</span>
+                  <span className="preview-value">{allProjectData.build.backendHosting || 'Not set'}</span>
+                </div>
+                <div className="preview-item">
+                  <span className="preview-label">Database Hosting</span>
+                  <span className="preview-value">{allProjectData.build.databaseHosting || 'Not set'}</span>
+                </div>
+
                 <div className="preview-item">
                   <span className="preview-label">Custom Domain</span>
                   <span className="preview-value">{allProjectData.build.customDomain || 'Not set'}</span>
@@ -216,7 +226,7 @@ function Export() {
             <h3 className="card-title">📄 Export Options</h3>
             <p className="card-description">Download your project blueprint</p>
           </div>
-          
+
           <div className="save-section">
             <button className="save-button" onClick={exportProject}>
               📥 Download Blueprint (JSON)
@@ -229,14 +239,14 @@ function Export() {
         <button
           className="prev-button"
           onClick={() => navigate('/build')}    // prev
-   
+
 
         >
           ← Back to Build
         </button>
         <button
           className="next-button"
-        onClick={() => navigate('/')}         // home
+          onClick={() => navigate('/')}         // home
         >
           🏠 Back to Home
         </button>
