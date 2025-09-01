@@ -22,10 +22,12 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.amazonq
 
 # Build output
 
 build/
+Output
 
 # Old files for reference purpose
 src/components/boilerplate.jsx

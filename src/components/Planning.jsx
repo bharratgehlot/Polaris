@@ -20,6 +20,7 @@ function Planning() {
   const [planningData, setPlanningData] = useState({
     frontend: '',
     backend: '',
+    backendFramework: '',
     database: '',
     pages: '',
     styling: '',
@@ -38,6 +39,7 @@ function Planning() {
   const [savedPlanningData, setSavedPlanningData] = useState({
     frontend: '',
     backend: '',
+    backendFramework: '',
     database: '',
     pages: '',
     styling: '',
@@ -91,6 +93,7 @@ function Planning() {
       const emptyData = {
         frontend: '',
         backend: '',
+        backendFramework: '',
         database: '',
         pages: '',
         styling: '',
@@ -107,11 +110,31 @@ function Planning() {
 
 
 
-  // Additional (Specific to Planning.jsx)
+  // Additional (Specific to Planning.jsx) 
 
+    // Handle Select change before adding backend framework
+
+/* 
   const handleSelectChange = (field, value) => {
     setPlanningData(prev => ({ ...prev, [field]: value }))
   }
+*/
+
+  // Handle Select change after adding backend framework
+
+const handleSelectChange = (field, value) => {
+  setPlanningData(prev => {
+    const newData = { ...prev, [field]: value }
+    // Clear backend framework when backend changes
+    if (field === 'backend') {
+      newData.backendFramework = ''
+    }
+    return newData
+  })
+}
+
+
+
 
   const handleFeatureChange = (feature, checked) => {
     setPlanningData(prev => ({
@@ -129,10 +152,23 @@ function Planning() {
   const databaseOptions = ['Not Required', 'MongoDB', 'PostgreSQL', 'MySQL', 'SQLite', 'Redis', 'Firebase', 'Other']
 
 
+
+// Get backend framework options based on selected backend
+const getBackendFrameworkOptions = () => {
+  switch (planningData.backend) {
+    case 'Python':
+      return ['Flask', 'Django', 'FastAPI']
+    case 'Java':
+      return ['Spring Boot', 'Spark']
+    default:
+      return []
+  }
+}
+
+
+
+
   // Features Selection
-
- 
-
 
   const featuresOptions = ['User Authentication', 'Payment Integration', 'Real-time Chat', 'File Upload', 'Email Notifications', 'Search Functionality', 'Admin Dashboard', 'API Integration', 'Dark Mode', 'Mobile Responsive']
 
@@ -239,6 +275,16 @@ function Planning() {
                 <span className="preview-label">Backend</span>
                 <span className="preview-value">{savedPlanningData.backend || 'Not selected'}</span>
               </div>
+
+
+             {savedPlanningData.backendFramework && (
+               <div className="preview-item">
+                 <span className="preview-label">Backend Framework</span>
+                 <span className="preview-value">{savedPlanningData.backendFramework}</span>
+               </div>
+             )}
+
+
 
               <div className="preview-item">
                 <span className="preview-label">Database</span>
@@ -374,11 +420,30 @@ function Planning() {
             </div>
 
 
+            {getBackendFrameworkOptions().length > 0 && (
+              <div className="input-group">
+                <label className="input-label">Backend Framework</label>
+                <select
+                  className="modern-select"
+                  value={planningData.backendFramework}
+                  onChange={(e) => handleSelectChange('backendFramework', e.target.value)}
+                >
+                  <option value="">Select framework</option>
+                  {getBackendFrameworkOptions().map(option => (
+                    <option key={option} value={option}>{option}</option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+
+
             {planningData.frontend && planningData.backend && (
               <div className="tech-feedback">
                 {getfeedbackObjectTech()?.message}
               </div>
             )}
+
 
 
 
