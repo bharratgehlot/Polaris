@@ -176,10 +176,10 @@ function Code() {
 
           <div className="save-section">
             <button className="save-button" onClick={saveCodeData}>
-              Save Code Data
+              Save Data
             </button>
             <button className="clear-button" onClick={clearCodeData}>
-              Clear Code Data
+              Clear Data
             </button>
           </div>
         </div>

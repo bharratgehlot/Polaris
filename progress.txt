@@ -28,8 +28,8 @@ Deploy Branch - builds
 Styles:
 
 May use google fonts
-
-Primary Color: 
+Accent: Bright Blue Green
+theme (from index.css) is dark + blue accent + red error
 
 
 Quality Checks:

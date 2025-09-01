@@ -126,6 +126,11 @@ function AppContent() {
           <h1>Polaris</h1>
           <br />
 
+          {/* toast notifier */}
+
+          <div class="toast-container" id="toast-container"></div>
+
+
           {/* Project Name and description */}
 
           <div>

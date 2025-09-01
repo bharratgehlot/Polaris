@@ -1,16 +1,26 @@
 /* GLOBAL CSS FOR ALL COMPONENTS */
 
-/* 1. Page Container Styles */
+:root {
+  --primary-dark: #1a1a1a;
+  --accent-blue: #007acc;
+  --error-red: #e63946;
+  --neutral-bg: rgba(255, 255, 255, 0.9);
+}
 
+/* 1. Page Container Styles */
 
 .page-container {
   max-width: 439px;
   margin: 0 auto;
   padding: 1.5rem;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+
+  /*background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);*/
   min-height: 100vh;
 }
-
 
 .page-header {
   text-align: center;
@@ -30,7 +40,6 @@
   margin: 0;
 }
 
-
 .page-sections {
   display: grid;
   gap: 1.25rem;
@@ -43,11 +52,6 @@
   overflow: hidden;
 }
 
-
-
-
-
-
 /* 2. Prev/Next Button */
 
 .next-section {
@@ -57,10 +61,12 @@
   margin-top: 2rem;
 }
 
-.next-button, .prev-button {
+.next-button,
+.prev-button {
   padding: 12px 24px;
   border: none;
   border-radius: 8px;
+
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -68,29 +74,28 @@
 }
 
 .next-button {
-  background: #4299e1;
+  background: var(--primary-dark);
   color: white;
 }
 
 .prev-button {
-  background: #e2e8f0;
-  color: #4a5568;
-
-
+  background: var(--error-red);
+  color: white;
 }
 .next-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+
+  background: #000;
+  box-shadow: 0 0 10px rgba(0, 122, 204, 0.4);
 }
 
 .prev-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(245, 87, 108, 0.4);
+  background: #c1121f;
+  box-shadow: 0 0 10px rgba(230, 57, 70, 0.5);
 }
 
-
 /* 3. Save/Clear Button */
-
 
 .save-section {
   padding: 20px;
@@ -99,7 +104,8 @@
   flex-wrap: wrap;
 }
 
-.save-button, .clear-button {
+.save-button,
+.clear-button {
   padding: 12px 24px;
   border: none;
   border-radius: 6px;
@@ -109,37 +115,32 @@
   transition: all 0.3s ease;
   flex: 1;
   min-width: 150px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-
 .save-button {
-  background: #2d3748;
+  background: var(--accent-blue); /* #007acc */
   color: white;
 }
 
 .save-button:hover {
-  background: #1a202c;
+  background: #2563eb;
 }
 
 .clear-button {
-  background: #a0aec0;
+   background: #9ca3af;
   color: white;
 }
 
 .clear-button:hover {
-  background: #718096;
+  background: #6b7280;
 }
-
-
-
 
 /* 4. Custom Button */
 
 .custom-btn {
   padding: 8px 16px;
-  background: #667eea;
+  background: linear-gradient(135deg, #007acc, #00c9a7);
   color: white;
   border: none;
   border-radius: 6px;
@@ -153,14 +154,10 @@
 }
 
 .custom-btn:hover {
-  background: #5a67d8;
+  background: linear-gradient(135deg, #005f99, #00a389);
 }
 
-
-
-
 /* 5. Preview Section */
-
 
 .preview-card {
   background: white;
@@ -228,7 +225,6 @@
   font-size: 0.85rem;
 }
 
-
 /* 6. Card Styles */
 
 .card-header {
@@ -249,7 +245,6 @@
   font-size: 0.8rem;
 }
 
-
 .input-group {
   display: flex;
   flex-direction: column;
@@ -265,6 +260,7 @@
 .modern-select {
   padding: 0.6rem;
   border: 2px solid #e2e8f0;
+
   border-radius: 6px;
   font-size: 0.8rem;
   transition: border-color 0.2s;
@@ -272,24 +268,65 @@
 
 .modern-select:focus {
   outline: none;
-  border-color: #4299e1;
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 8px rgba(0, 122, 204, 0.6);
 }
 
 /* 7. Grid Layout */
 
-.grid-responsive { 
-  display: grid; 
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-  gap: 0.75rem; 
-  padding: 1.25rem; 
+.grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+  padding: 1.25rem;
+}
+
+/* 8. Toast Notification */
+
+
+.toast-container {
+  position: fixed;
+  bottom: 200px;   /* just above the save/clear buttons */
+  left: 50%;       /* center horizontally */
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 1000;
+}
+
+.toast {
+min-width: 140px;   /* smaller width */
+  max-width: 220px;   /* prevent stretching */
+  padding: 8px 14px;  /* reduced padding */
+  border-radius: 6px;
+  font-size: 0.8rem;  /* smaller font */
+  font-weight: 500;
+  color: white;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  animation: fadeInOut 2.5s forwards; /* slightly quicker */
+}
+
+.toast.success {
+  background: #3b82f6; /* soft blue for save */
+}
+
+.toast.info {
+  background: #9ca3af; /* soft gray for clear */
+}
+
+@keyframes fadeInOut {
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 
 
-
-
 /* MEDIA QUERIES */
-
 
 /* Media Query for screens below 440px */
 @media (max-width: 440px) {
@@ -320,7 +357,8 @@
     flex-direction: column;
   }
 
-  .save-button, .clear-button {
+  .save-button,
+  .clear-button {
     min-width: auto;
     padding: 10px 16px;
     font-size: 0.8rem;
@@ -330,7 +368,8 @@
     flex-direction: column;
   }
 
-  .next-button, .prev-button {
+  .next-button,
+  .prev-button {
     padding: 10px 16px;
     font-size: 0.8rem;
   }
@@ -341,4 +380,3 @@
     font-size: 0.75rem;
   }
 }
-

@@ -287,10 +287,10 @@ function Build() {
 
           <div className="save-section">
             <button className="save-button" onClick={saveBuildData}>
-              Save Build Data
+              Save Data
             </button>
             <button className="clear-button" onClick={clearBuildData}>
-              Clear Build Data
+              Clear Data
             </button>
           </div>
         </div>

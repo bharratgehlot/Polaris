@@ -53,7 +53,7 @@ function Planning() {
   // State Management for the Planning Data Preview and custom features
 
   const [showPlanningPreview, setShowPlanningPreview] = useState(false)
-   const [customFeature, setCustomFeature] = useState('')
+  const [customFeature, setCustomFeature] = useState('')
 
 
 
@@ -73,6 +73,27 @@ function Planning() {
   }, [])
 
 
+
+  // Toast function
+  const showToast = (message, type = "success") => {
+    const container = document.getElementById("toast-container");
+    if (!container) return;
+
+    const toast = document.createElement("div");
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+
+    container.appendChild(toast);
+
+    // Remove after 3s
+    setTimeout(() => {
+      toast.remove();
+    }, 3000);
+  };
+
+
+
+
   // Manual save function for code data
 
 
@@ -80,6 +101,7 @@ function Planning() {
     try {
       localStorage.setItem('projectPlanningData', JSON.stringify(planningData))
       setSavedPlanningData(planningData)
+      showToast("Data is saved", "success");
     } catch (error) {
       console.log('Error saving planning data: ', error)
     }
@@ -102,6 +124,7 @@ function Planning() {
       }
       setPlanningData(emptyData)
       setSavedPlanningData(emptyData)
+      showToast("Data is cleared", "info");
     } catch (error) {
       console.log('Error clearing planning data: ', error)
     }
@@ -110,28 +133,30 @@ function Planning() {
 
 
 
+
+
   // Additional (Specific to Planning.jsx) 
 
-    // Handle Select change before adding backend framework
+  // Handle Select change before adding backend framework
 
-/* 
-  const handleSelectChange = (field, value) => {
-    setPlanningData(prev => ({ ...prev, [field]: value }))
-  }
-*/
+  /* 
+    const handleSelectChange = (field, value) => {
+      setPlanningData(prev => ({ ...prev, [field]: value }))
+    }
+  */
 
   // Handle Select change after adding backend framework
 
-const handleSelectChange = (field, value) => {
-  setPlanningData(prev => {
-    const newData = { ...prev, [field]: value }
-    // Clear backend framework when backend changes
-    if (field === 'backend') {
-      newData.backendFramework = ''
-    }
-    return newData
-  })
-}
+  const handleSelectChange = (field, value) => {
+    setPlanningData(prev => {
+      const newData = { ...prev, [field]: value }
+      // Clear backend framework when backend changes
+      if (field === 'backend') {
+        newData.backendFramework = ''
+      }
+      return newData
+    })
+  }
 
 
 
@@ -153,17 +178,17 @@ const handleSelectChange = (field, value) => {
 
 
 
-// Get backend framework options based on selected backend
-const getBackendFrameworkOptions = () => {
-  switch (planningData.backend) {
-    case 'Python':
-      return ['Flask', 'Django', 'FastAPI']
-    case 'Java':
-      return ['Spring Boot', 'Spark']
-    default:
-      return []
+  // Get backend framework options based on selected backend
+  const getBackendFrameworkOptions = () => {
+    switch (planningData.backend) {
+      case 'Python':
+        return ['Flask', 'Django', 'FastAPI']
+      case 'Java':
+        return ['Spring Boot', 'Spark']
+      default:
+        return []
+    }
   }
-}
 
 
 
@@ -204,7 +229,7 @@ const getBackendFrameworkOptions = () => {
   const getfeedbackObjectDatabase = () => {
 
     if (!planningData.database) return null
-  if (planningData.database === 'Not Required' || planningData.database === 'Other') return null
+    if (planningData.database === 'Not Required' || planningData.database === 'Other') return null
 
     const key = `${planningData.database}`
     return feedbackObjectDatabase[key] || {
@@ -277,12 +302,12 @@ const getBackendFrameworkOptions = () => {
               </div>
 
 
-             {savedPlanningData.backendFramework && (
-               <div className="preview-item">
-                 <span className="preview-label">Backend Framework</span>
-                 <span className="preview-value">{savedPlanningData.backendFramework}</span>
-               </div>
-             )}
+              {savedPlanningData.backendFramework && (
+                <div className="preview-item">
+                  <span className="preview-label">Backend Framework</span>
+                  <span className="preview-value">{savedPlanningData.backendFramework}</span>
+                </div>
+              )}
 
 
 
@@ -350,7 +375,9 @@ const getBackendFrameworkOptions = () => {
 
 
 
+      {/* toast notifier */}
 
+      <div class="toast-container" id="toast-container"></div>
 
 
 
@@ -677,15 +704,15 @@ const getBackendFrameworkOptions = () => {
       <div className="page-card">
         <div className="save-section">
           <button className="save-button" onClick={savePlanningData}>
-            Save Planning Data
+            Save Data
           </button>
           <button className="clear-button" onClick={clearPlanningData}>
-            Clear Planning Data
+            Clear Data
           </button>
         </div>
       </div>
 
-    
+
 
 
       <div className="next-section">

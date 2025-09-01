@@ -582,10 +582,10 @@ function Design() {
 
           <div className="save-section">
             <button className="save-button" onClick={saveDesignData}>
-              Save Design Data
+              Save Data
             </button>
             <button className="clear-button" onClick={clearDesignData}>
-              Clear Design Data
+              Clear Data
             </button>
           </div>
 
