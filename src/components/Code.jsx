@@ -4,7 +4,7 @@ import "./Code.css";
 
 function Code() {
 
-   // Project Name Variable 
+  // Project Name Variable 
 
   const projectName = localStorage.getItem("projectName") || "your project";
 
@@ -119,7 +119,7 @@ function Code() {
         )}
       </div>
 
-   {/* MAIN SECTION */}
+      {/* MAIN SECTION */}
 
 
       <div className="page-sections">
@@ -136,6 +136,8 @@ function Code() {
             <div className="input-group">
               <label className="input-label">IDE Selector</label>
               <select
+                className="modern-select"
+
                 value={codeData.ideSelector}
                 onChange={(e) =>
                   setCodeData({ ...codeData, ideSelector: e.target.value })
@@ -155,6 +157,8 @@ function Code() {
             <div className="input-group">
               <label className="input-label">Duration of Code (weeks)</label>
               <select
+                              className="modern-select"
+
                 value={codeData.durationOfCode}
                 onChange={(e) =>
                   setCodeData({ ...codeData, durationOfCode: e.target.value })
@@ -182,9 +186,9 @@ function Code() {
       </div>
 
       <div className="next-section">
-         <button
+        <button
           className="prev-button"
-         onClick={() => navigate('/design')}   // prev
+          onClick={() => navigate('/design')}   // prev
 
 
 
@@ -193,7 +197,7 @@ function Code() {
         </button>
         <button
           className="next-button"
-         onClick={() => navigate('/build')}    // next
+          onClick={() => navigate('/build')}    // next
         >
           Continue to Build →
         </button>

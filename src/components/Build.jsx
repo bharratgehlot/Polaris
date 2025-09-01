@@ -295,30 +295,9 @@ function Build() {
 
 
 
+          
+
             {/* ITEM 2 */}
-
-            <div className="input-group">
-              <label className="input-label">Hosting</label>
-              <select
-                className="modern-select"
-                value={buildData.hosting}
-                onChange={(e) => handleBuildChange('hosting', e.target.value)}
-              >
-                <option value="">Select Hosting</option>
-                <option value="vercel">Vercel</option>
-                <option value="netlify">Netlify</option>
-                <option value="render">Render</option>
-                <option value="aws">AWS</option>
-                <option value="github-pages">GitHub Pages</option>
-                <option value="firebase">Firebase Hosting</option>
-                <option value="surge">Surge</option>
-                <option value="heroku">Heroku</option>
-              </select>
-            </div>
-
-
-
-            {/* ITEM 3 */}
 
 
             <div className="input-group">

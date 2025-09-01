@@ -46,7 +46,7 @@ function Export() {
   const exportProject = () => {
     const projectBlueprint = {
       projectName: localStorage.getItem('projectData') || 'Project X',
-      projectDescription: localStorage.getItem('prokectDescription') || 'An web application',
+      projectDescription: localStorage.getItem('projectDescription') || 'An web application',
       timestamp: new Date().toISOString(),
       ...allProjectData
     };
