@@ -44,22 +44,11 @@
 }
 
 
-@media (max-width: 768px) {
-  .page-container {
-    padding: 1rem;
-    border: 2px solid saddlebrown;
-  }
-  
-  .page-title {
-    font-size: 1.75rem;
-  }
-  
-}
 
 
 
 
-/* 2. Previous Next Button */
+/* 2. Prev/Next Button */
 
 .next-section {
   display: flex;
@@ -69,12 +58,13 @@
 }
 
 .next-button, .prev-button {
-  padding: 0.75rem 1.5rem;
+  padding: 12px 24px;
   border: none;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .next-button {
@@ -85,14 +75,17 @@
 .prev-button {
   background: #e2e8f0;
   color: #4a5568;
-}
 
+
+}
 .next-button:hover {
-  background: #3182ce;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
 }
 
 .prev-button:hover {
-  background: #cbd5e0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(245, 87, 108, 0.4);
 }
 
 
@@ -100,43 +93,73 @@
 
 
 .save-section {
-  padding: 1.25rem;
+  padding: 20px;
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
 }
 
 .save-button, .clear-button {
-  padding: 0.75rem 1.5rem;
+  padding: 12px 24px;
   border: none;
   border-radius: 6px;
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
   flex: 1;
   min-width: 150px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 }
 
+
 .save-button {
-  background: #48bb78;
+  background: #2d3748;
   color: white;
 }
 
 .save-button:hover {
-  background: #38a169;
+  background: #1a202c;
 }
 
 .clear-button {
-  background: #e53e3e;
+  background: #a0aec0;
   color: white;
 }
 
 .clear-button:hover {
-  background: #c53030;
+  background: #718096;
 }
 
-/* 4. Preview Section */
+
+
+
+/* 4. Custom Button */
+
+.custom-btn {
+  padding: 8px 16px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 150px;
+  margin: 0 auto;
+  display: block;
+}
+
+.custom-btn:hover {
+  background: #5a67d8;
+}
+
+
+
+
+/* 5. Preview Section */
 
 
 .preview-card {
@@ -206,7 +229,7 @@
 }
 
 
-/* 5. Card Styles */
+/* 6. Card Styles */
 
 .card-header {
   padding: 1.25rem 1.25rem 0.75rem 1.25rem;
@@ -252,7 +275,7 @@
   border-color: #4299e1;
 }
 
-/* 6. Grid Layout */
+/* 7. Grid Layout */
 
 .grid-responsive { 
   display: grid; 
@@ -260,3 +283,62 @@
   gap: 0.75rem; 
   padding: 1.25rem; 
 }
+
+
+
+
+
+/* MEDIA QUERIES */
+
+
+/* Media Query for screens below 440px */
+@media (max-width: 440px) {
+  .page-container {
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .page-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-responsive {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .save-section {
+    padding: 1rem;
+    flex-direction: column;
+  }
+
+  .save-button, .clear-button {
+    min-width: auto;
+    padding: 10px 16px;
+    font-size: 0.8rem;
+  }
+
+  .next-section {
+    flex-direction: column;
+  }
+
+  .next-button, .prev-button {
+    padding: 10px 16px;
+    font-size: 0.8rem;
+  }
+
+  .custom-btn {
+    padding: 6px 12px;
+    width: 120px;
+    font-size: 0.75rem;
+  }
+}
+

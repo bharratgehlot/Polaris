@@ -35,7 +35,6 @@ function Planning() {
 
 
 
-
   const [savedPlanningData, setSavedPlanningData] = useState({
     frontend: '',
     backend: '',
@@ -49,9 +48,10 @@ function Planning() {
 
 
 
-  // State Management for the Planning Data Preview
+  // State Management for the Planning Data Preview and custom features
 
   const [showPlanningPreview, setShowPlanningPreview] = useState(false)
+   const [customFeature, setCustomFeature] = useState('')
 
 
 
@@ -125,8 +125,15 @@ function Planning() {
 
 
   //const frontendOptions = ['React', 'Vue', 'Angular', 'Svelte', 'Next.js', 'Nuxt.js', 'HTML, CSS, Javascript']
-  const backendOptions = ['None', 'Node.js', 'Python', 'Java', 'C#', '.NET', 'PHP', 'Go', 'Ruby on rails']
-  const databaseOptions = ['None', 'MongoDB', 'PostgreSQL', 'MySQL', 'SQLite', 'Redis', 'Firebase']
+  const backendOptions = ['Not Required', 'Node.js', 'Python', 'Java', 'C#', '.NET', 'PHP', 'Go', 'Ruby on rails', 'Other']
+  const databaseOptions = ['Not Required', 'MongoDB', 'PostgreSQL', 'MySQL', 'SQLite', 'Redis', 'Firebase', 'Other']
+
+
+  // Features Selection
+
+ 
+
+
   const featuresOptions = ['User Authentication', 'Payment Integration', 'Real-time Chat', 'File Upload', 'Email Notifications', 'Search Functionality', 'Admin Dashboard', 'API Integration', 'Dark Mode', 'Mobile Responsive']
 
   const feedbackObjectTech = {
@@ -146,6 +153,9 @@ function Planning() {
   const getfeedbackObjectTech = () => {
     if (!planningData.frontend || !planningData.backend) return null
 
+    if (planningData.frontend === 'Not Required' || planningData.frontend === 'Other' ||
+      planningData.backend === 'Not Required' || planningData.backend === 'Other') return null
+
     const key = `${planningData.frontend}+${planningData.backend}`
     return feedbackObjectTech[key] || {
       message: '💡 Interesting combination! Make sure they work well together',
@@ -156,11 +166,13 @@ function Planning() {
 
 
   const getfeedbackObjectDatabase = () => {
+
     if (!planningData.database) return null
+  if (planningData.database === 'Not Required' || planningData.database === 'Other') return null
 
     const key = `${planningData.database}`
     return feedbackObjectDatabase[key] || {
-      message: 'Well choosen database, make sure it work properly with frontend and backend',
+      message: 'Nice selection! Verify it works with your tech',
       type: 'neutral'
     }
   }
@@ -171,7 +183,7 @@ function Planning() {
 
     const key = `${planningData.features}`
     return {
-      message: "TIP: Don't select more than three if you gonna use AI. It will be messy. You can add more features later"
+      message: "💡 Keep it simple: limit to 3-5 features when using AI tools to avoid complexity"
     }
   }
 
@@ -306,7 +318,7 @@ function Planning() {
             <p className="card-description">Choose your core technologies</p>
           </div>
 
-          <div className="tech-grid">
+          <div className="grid-responsive">
             <div className="input-group">
               <label className="input-label">Frontend Framework</label>
 
@@ -324,15 +336,17 @@ function Planning() {
                 */}
 
                 <option value="">Select frontend</option>
+                <option value="Not Required">Not Required</option>
                 <option value="React">React</option>
+                <option value="HTML CSS JS">HTML CSS JS</option>
                 <option value="Vue.js">Vue.js</option>
                 <option value="Angular">Angular</option>
                 <option value="Svelte">Svelte</option>
                 <option value="Next.js">Next.js</option>
                 <option value="Nuxt.js">Nuxt.js</option>
                 <option value="Gatsby">Gatsby</option>
-                <option value="Vanilla JavaScript">Vanilla JavaScript</option>
                 <option value="TypeScript">TypeScript</option>
+                <option value="Other">Other</option>
 
               </select>
 
@@ -399,15 +413,16 @@ function Planning() {
             <p className="card-description">Select styling frameworks and libraries</p>
           </div>
 
-          <div className="styling-grid">
+          <div className="grid-responsive">
             <div className="input-group">
-              <label className="input-label">CSS Framework</label>
+              <label className="input-label">CSS Framework (Optional)</label>
               <select
                 className="modern-select"
                 value={planningData.styling}
                 onChange={(e) => handleSelectChange('styling', e.target.value)}
               >
                 <option value="">Select styling</option>
+                <option value="Not Required">Not Required</option>
                 <option value="Tailwind CSS">Tailwind CSS</option>
                 <option value="Bootstrap">Bootstrap</option>
                 <option value="Plain CSS">Plain CSS</option>
@@ -417,11 +432,13 @@ function Planning() {
                 <option value="Bulma">Bulma</option>
                 <option value="Semantic UI">Semantic UI</option>
                 <option value="Foundation">Foundation</option>
+                <option value="Other">Other</option>
+
               </select>
             </div>
 
             <div className="input-group">
-              <label className="input-label">Component Library</label>
+              <label className="input-label">Component Library (if required)</label>
 
               <select
                 className="modern-select"
@@ -430,6 +447,7 @@ function Planning() {
               >
 
                 <option value="">Select library</option>
+                <option value="Not Required">Not Required</option>
                 <option value="Mantine">Mantine</option>
                 <option value="Radix UI">Radix UI</option>
                 <option value="ShadCN/UI">ShadCN/UI</option>
@@ -442,10 +460,7 @@ function Planning() {
                 <option value="Theme UI">Theme UI</option>
                 <option value="Onsen UI">Onsen UI</option>
                 <option value="Shoelace">Shoelace</option>
-
-
-
-
+                <option value="Other">Other</option>
               </select>
 
 
@@ -462,9 +477,11 @@ function Planning() {
                 onChange={(e) => handleSelectChange('pages', e.target.value)}
               >
                 <option value="">Select pages</option>
-                {[1, 2, 3, 4, '5+'].map(num => (
-                  <option key={num} value={num}>{num}</option>
-                ))}
+                <option value="Small App (1-3 pages)">Small App (1-3 pages)</option>
+                <option value="Medium App (4-7 pages)">Medium App (4-7 pages)</option>
+                <option value="Large (10+ pages)">Large (10+ pages)</option>
+
+
               </select>
 
 
@@ -478,7 +495,7 @@ function Planning() {
             <p className="card-description">Select the features you need</p>
           </div>
 
-          <div className="features-grid">
+          <div className="grid-responsive">
             {featuresOptions.map(feature => (
               <label key={feature} className="feature-option">
                 <input
@@ -491,25 +508,120 @@ function Planning() {
               </label>
             ))}
           </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           {planningData.features.length > 2 && (
             <div className="tech-feedback">
               {getfeedbackObjectFeatures()?.message}
             </div>
           )}
 
-          <div className="save-section">
-            <button className="save-button" onClick={savePlanningData}>
-              Save Planning Data
-            </button>
-            <button className="clear-button" onClick={clearPlanningData}>
-              Clear Planning Data
-            </button>
-          </div>
+
 
 
 
         </div>
+
+
+        <div className="page-card">
+          <div className="card-header">
+            <h3 className="card-title">✨ Custom Features</h3>
+            <p className="card-description">Add your own custom features</p>
+          </div>
+
+          <div className="grid-responsive">
+            <div className="input-group">
+              <label className="input-label">Custom Feature</label>
+              <input
+                type="text"
+                className="modern-select"
+                placeholder="Enter custom feature"
+                value={customFeature}
+                onChange={(e) => setCustomFeature(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && customFeature.trim()) {
+                    handleFeatureChange(customFeature.trim(), true)
+                    setCustomFeature('')
+                  }
+                }}
+              />
+            </div>
+            <div className="input-group">
+              <label className="input-label" style={{ opacity: 0 }}>Add</label>
+              <button
+                type="button"
+                className="custom-btn"
+                onClick={() => {
+                  if (customFeature.trim()) {
+                    handleFeatureChange(customFeature.trim(), true)
+                    setCustomFeature('')
+                  }
+                }}
+              >
+                Add Feature
+              </button>
+            </div>
+          </div>
+
+
+          {planningData.features.filter(feature => !featuresOptions.includes(feature)).length > 0 && (
+            <div className="grid-responsive">
+              {planningData.features
+                .filter(feature => !featuresOptions.includes(feature))
+                .map((feature, index) => (
+                  <label key={`custom-${index}`} className="feature-option">
+                    <input
+                      type="checkbox"
+                      checked={true}
+                      onChange={(e) => handleFeatureChange(feature, e.target.checked)}
+                    />
+                    <span className="checkbox-custom"></span>
+                    <span className="feature-label">{feature}</span>
+                  </label>
+                ))}
+            </div>
+          )}
+
+
+
+
+
+
+
+        </div>
+
+
       </div>
+      <br />
+      <div className="page-card">
+        <div className="save-section">
+          <button className="save-button" onClick={savePlanningData}>
+            Save Planning Data
+          </button>
+          <button className="clear-button" onClick={clearPlanningData}>
+            Clear Planning Data
+          </button>
+        </div>
+      </div>
+
+    
+
 
       <div className="next-section">
 

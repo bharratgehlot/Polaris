@@ -9,5 +9,13 @@
 
 
 
+@media (max-width: 440px) {
+
+  .color-grid,
+  .typography-grid,
+  .navigation-options {
+    grid-template-columns: 1fr;
+  }
+}
 
 

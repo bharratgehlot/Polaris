@@ -16,31 +16,8 @@
 .tech-feedback.neutral { background: #f8f9fa; color: #495057; }
 
 
-/* Global CSS */
 
 
-
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 0.75rem;
-  padding: 1.25rem;
-}
-
-.styling-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 0.75rem;
-  padding: 1.25rem;
-}
-
-
-.features-grid {
-  padding: 1.25rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 0.75rem;
-}
 
 .feature-option {
   display: flex;
@@ -120,13 +97,3 @@
   font-weight: 500;
 }
 
-
-
-
-@media (max-width: 768px) {
-  .tech-grid,
-  .styling-grid,
-  .features-grid {
-    grid-template-columns: 1fr;
-  }
-}

@@ -1,9 +1,11 @@
 
-.build-grid-1 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 0.75rem;
-  padding: 1.25rem;
+
+
+@media (max-width: 440px) {
+
+  .color-grid,
+  .typography-grid,
+  .navigation-options {
+    grid-template-columns: 1fr;
+  }
 }
-
-

@@ -43,12 +43,25 @@ function AppContent() {
 
   // Logo Spinning State
 
-  const [isSpinning, setIsSpinning] = useState(true);
+  const [isSpinning, setIsSpinning] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsSpinning(false), 2000);
-    return () => clearTimeout(timer);
+    const handleDOMLoaded = () => {
+      setIsSpinning(true)
+      setTimeout(() => setIsSpinning(false), 2000);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', handleDOMLoaded);
+    } else {
+      handleDOMLoaded();
+    }
+    
+    return () => document.removeEventListener('DOMContentLoaded', handleDOMLoaded)
   }, []);
+
+
+  // Click on logo to make it spins
 
   const handleLogoClick = () => {
     setIsSpinning(true);
