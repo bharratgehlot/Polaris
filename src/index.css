@@ -2,7 +2,7 @@
   font-family: system-ui, sans-serif;
   color: #2c2c2c;
   background-color: #e4e2ddde;
-  color-scheme: light;
+  
 }
 
 body {
@@ -12,32 +12,47 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  
 }
-
-
 
 #root {
   text-align: center;
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
 }
 
 h1 {
   font-size: 3.2em;
   margin: 0.5em 0;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  
 }
 
-p {
+
+
+.read-the-docs {
   font-size: 1em;
   margin: 1.5em 0;
+  
+  color: #666;
+  font-style: italic;
+  margin-top: 2rem;
 }
 
 .build-now {
-  padding: 10px 19px;
-  border: 2px solid transparent;
+  padding: 10px 22px;
+  border: 1.5px solid transparent;
   border-radius: 8px;
   background-color: #1a1a1ac5;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.25s ease;
   color: white;
+  margin: 10px 0;
+  min-width: 160px;
+    
+
 }
 
 .build-now:hover {
@@ -45,36 +60,65 @@ p {
   background-color: #1a1a1a;
 }
 
+.clear-now {
+  padding: 8px 18px;
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  background-color: #dc3545;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: white;
+  margin: 10px 0;
+  font-size: 12px;
+}
+
+.clear-now:hover {
+  background-color: #c82333;
+  border-color: white;
+}
+
+
 /* Input Styles */
 input[type="text"],
 textarea {
-  width: 300px;
+  width: 100%;
+  max-width: 350px;
+    
+
   padding: 12px 16px;
-  margin: 10px 0;
+  margin: 12px auto;
   border: 2px solid transparent;
   border-radius: 8px;
   background-color: rgba(255, 255, 255, 0.9);
   color: #2c2c2c;
   font-size: 16px;
+  
   transition: border-color 0.25s, background-color 0.25s;
+  /*box-sizing: border-box;*/
+  box-sizing: border-box;
+  display: block;
 }
 
 input[type="text"]:focus,
 textarea:focus {
   outline: none;
   border-color: #1a1a1a;
+
+
   background-color: white;
 }
 
 textarea {
-  height: 80px;
+  height: 100px;
   resize: vertical;
+  
+
   font-family: inherit;
 }
 
 input[type="text"]::placeholder,
 textarea::placeholder {
-  color: #666;
+  color: #999;
 }
 
 /* Navigation Styles */
@@ -108,27 +152,11 @@ nav a:hover {
   box-shadow: 0 4px 12px #1a1a1a7c;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-
-
 .polaris_logo {
+
   width: 300px;
   height: 300px;
+  margin: 20px auto;
   clip-path: polygon(
     50% 0%,
     63% 33%,
@@ -141,6 +169,7 @@ nav a:hover {
     0% 33%,
     37% 33%
   );
+ 
 }
 
 .polaris_logo.spinning {
@@ -150,8 +179,82 @@ nav a:hover {
 .polaris_image {
   width: 100%;
   height: 100%;
+
 }
 
 .polaris_logo.spinning .polaris_image {
   animation: spin 2s ease-in-out reverse;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Media Query for screens below 440px */
+@media (max-width: 440px) {
+  #root {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 2.4em;
+    margin: 15px 0;
+    
+  }
+
+  .polaris_logo {
+    width: 200px;
+    height: 200px;
+    margin: 15px auto;
+  }
+
+  input[type="text"],
+  textarea {
+    max-width: 280px;
+    padding: 10px 12px;
+    font-size: 14px;
+        margin: 12px auto;
+
+  }
+
+  textarea {
+    height: 80px;
+  }
+
+  .build-now {
+    padding: 8px 18px;
+    font-size: 12px;
+    min-width: 140px;
+        margin: 12px auto;
+
+  }
+
+  .clear-now {
+    padding: 6px 14px;
+    font-size: 11px;
+    min-width: 120px;
+    margin: 10px auto;
+  }
+
+
+  nav {
+    gap: 0.5rem;
+    padding: 0.8rem;
+    margin: 1.5rem auto;
+  }
+
+  nav a {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .read-the-docs {
+    font-size: 0.9em;
+    margin: 25px 0;
+  }
 }

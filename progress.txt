@@ -8,7 +8,7 @@ DAY 5 (31/08/25) - Final Polish & Deploy 1 - 4.5 Hours
 
 (Extended Days if possible)
  
-DAY 6 (date) - Addtional Feautres
+DAY 6 (date) - Fixing App.jsx and index.css - Addtional Feautres
 DAY 7 (date) TEST & DEPLOY 2
 (Hire someone to do redesign while keeping the strucutre same. Max budget 1000rs)
 
@@ -40,6 +40,8 @@ index.html => Checked
 Feature Ideas:
 
 // Each componet have some message that describe functionalities of the page when user visits first time.
+// Sound effect for logo spins
+// Chnage shape of Button in App.jsx
 
 Build Command:
 

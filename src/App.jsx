@@ -5,6 +5,7 @@ import Design from "./components/Design";
 import Export from "./components/Export";
 import Planning from "./components/Planning";
 import polarisLogo from "./assets/polaris_logo_2.png";
+import { useNavigate } from "react-router-dom";
 import {
   BrowserRouter,
   Routes,
@@ -14,25 +15,33 @@ import {
 } from "react-router-dom";
 
 function AppContent() {
-  // Variables for storing
+  // Navigate variable
+
+  const navigate = useNavigate();
+
+  // Variables for storing data
 
   const [projectName, setProjectName] = useState("");
   const [projectDescription, setProjectDescription] = useState("");
 
-  // Checks previously stored data
+  // Checks if there is previously stored data
 
   const hasStoredData = () => {
-    return (
-      localStorage.getItem("projectName") ||
-      localStorage.getItem("projectDescription") ||
-      localStorage.getItem("projectPlanningData") ||
-      localStorage.getItem("projectDesignData") ||
-      localStorage.getItem("projectCodeData") ||
-      localStorage.getItem("projectBuildData")
-    );
+    try {
+      return (
+        localStorage.getItem("projectName") ||
+        localStorage.getItem("projectDescription") ||
+        localStorage.getItem("projectPlanningData") ||
+        localStorage.getItem("projectDesignData") ||
+        localStorage.getItem("projectCodeData") ||
+        localStorage.getItem("projectBuildData")
+      );
+    } catch (error) {
+      return false;
+    }
   };
 
-  // Logo Spins
+  // Logo Spinning State
 
   const [isSpinning, setIsSpinning] = useState(true);
 
@@ -49,27 +58,35 @@ function AppContent() {
   // Clear button for previous data cleaning
 
   const clearPreviousData = () => {
-    localStorage.clear();
-    setProjectName("");
-    setProjectDescription("");
-    alert("All previous data cleared");
+    try {
+      localStorage.clear();
+      setProjectName("");
+      setProjectDescription("");
+      alert("All previous data cleared");
+    } catch (error) {
+      alert("Failed to clear data");
+    }
   };
 
-  // saving project name and description to localstorage
+  // Saving project name and description to localStorage
 
-  const handleStartBuilding = (e) => {
+  const handleStartBuilding = () => {
     if (!projectName.trim()) {
-      e.preventDefault();
       alert("Project name is required");
       return;
     }
 
-    console.log("Project Name:", projectName);
-    console.log("Project Description:", projectDescription);
-    localStorage.setItem("projectName", projectName);
-    localStorage.setItem("projectDescription", projectDescription);
-    console.log("Data saved to localStorage");
+    try {
+      localStorage.setItem("projectName", projectName);
+      localStorage.setItem("projectDescription", projectDescription);
+      console.log("Data saved to localStorage");
+      navigate("/planning");
+    } catch (error) {
+      alert("Failed to save project data");
+    }
   };
+
+  // Checks if user is on home page or not ?
 
   const location = useLocation();
   const isHome = location.pathname === "/";
@@ -77,6 +94,8 @@ function AppContent() {
     <>
       {isHome && (
         <>
+          {/* Logo Spins */}
+
           <div
             className={`polaris_logo ${isSpinning ? "spinning" : ""}`}
             onClick={handleLogoClick}
@@ -89,8 +108,12 @@ function AppContent() {
             />
           </div>
 
+          {/* Heading */}
+
           <h1>Polaris</h1>
-          <br></br>
+          <br />
+
+          {/* Project Name and description */}
 
           <div>
             <input
@@ -110,30 +133,46 @@ function AppContent() {
             />
           </div>
 
+         
+          {/* Build button */}
+
+          <div>
+
+              <button className="build-now" onClick={handleStartBuilding}>
+                START BUILDING
+              </button>
+
+          </div>
+
+
+           {/* Clear button */}
+
           {hasStoredData() && (
             <div>
               <button
-                className="build-now"
+                className="clear-now"
                 onClick={clearPreviousData}
-                style={{ backgroundColor: "#dc3545", marginBottom: "10px" }}
               >
                 Clear Previous Data
               </button>
             </div>
           )}
 
-          <div>
-            <Link to="/planning">
-              <button className="build-now" onClick={handleStartBuilding}>
-                START BUILDING
-              </button>
-            </Link>
-          </div>
+
+
+
+
+
+
+
+
           <p className="read-the-docs">
             Polaris helps you create your project faster
           </p>
         </>
       )}
+
+      {/* Routing (visible to all pages except home page) */}
 
       {!isHome && (
         <nav>
@@ -144,6 +183,9 @@ function AppContent() {
           <Link to="/export">Export</Link>
         </nav>
       )}
+
+      {/* Route used by all pages and components */}
+
       <Routes>
         <Route path="/" element={null} />
         <Route path="/planning" element={<Planning />} />
@@ -155,6 +197,8 @@ function AppContent() {
     </>
   );
 }
+
+// Main function that binds the AppContent function
 
 function App() {
   return (
