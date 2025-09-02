@@ -11,4 +11,12 @@ Ploaris solves it all and give you a single pdf with all the project details.
 
 ## Made me by / Made for myself
 
-This will be completed and deployed in 7 days only
+This project completed and deployed in 7 days only
+
+## In Action
+
+![Polaris Screenshot](./public/screenshot.png)
+
+- Take every input from user.
+- Validate it for incompibality
+- Export as one file (Blueprint for your fun project)

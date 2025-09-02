@@ -8,9 +8,11 @@ DAY 5 (31/08/25) - Final Polish & Deploy 1 - 4.5 Hours
 
 (Extended Days if possible)
  
-DAY 6 (31/08/25) - Fixing App.jsx and index.css - Addtional Feautres - - 3.5 Hours
-DAY 7 (31/08/25) FINAL TEST & DEPLOY 2
+DAY 6 (31/08/25) - Fixing App.jsx and index.css - Addtional Feautres - - 4 Hours
+DAY 7 (31/08/25) FINAL TEST & DEPLOY 2 - 5 Hours
 (Hire someone to do redesign while keeping the strucutre same. Max budget 1000rs)
+
+TOTAL Building Time 30 Hours only 
 
 Hosting:
 
