@@ -1,8 +1,7 @@
 :root {
   font-family: system-ui, sans-serif;
   color: #2c2c2c;
-  background-color: #e4e2ddde;
-  
+  background-color: #e4e2dd;
 }
 
 body {
@@ -12,13 +11,12 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-   background-image: url('./assets/background_2_optmized.jpg'); 
-  background-size: cover; 
-  background-position: center; 
-  background-repeat: no-repeat; 
-  background-attachment: fixed; 
+  background-image: url("./assets/background_2_optmized.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
-
 
 #root {
   text-align: center;
@@ -35,13 +33,11 @@ h1 {
   text-shadow: 0 2px 6px rgba(58, 54, 54, 0.233);
 }
 
-
-
 .read-the-docs {
   font-size: 1em;
   margin: 1.5em 0;
   color: rgba(26, 26, 26, 0.85);
-  
+
   font-style: italic;
   margin-top: 2rem;
 }
@@ -56,8 +52,6 @@ h1 {
   color: white;
   margin: 10px 0;
   min-width: 160px;
-    
-
 }
 
 .build-now:hover {
@@ -81,32 +75,22 @@ h1 {
 .clear-now:hover {
   background-color: #c1121f;
   border-color: white;
-
 }
-
 
 /* Input Styles */
 input[type="text"],
 textarea {
   width: 100%;
   max-width: 350px;
-    
-
   padding: 12px 16px;
   margin: 12px auto;
-  
   border-radius: 8px;
-
-
   background-color: rgba(255, 255, 255, 0.9);
   border: 2px solid transparent;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
   color: #2c2c2c;
   font-size: 16px;
-  
   transition: border-color 0.25s, background-color 0.25s;
-  /*box-sizing: border-box;*/
   box-sizing: border-box;
   display: block;
 }
@@ -114,7 +98,7 @@ textarea {
 input[type="text"]:focus,
 textarea:focus {
   outline: none;
-   border-color: #007acc; /* matches your blue background */
+  border-color: #007acc; /* matches your blue background */
   box-shadow: 0 0 8px rgba(0, 122, 204, 0.6);
   background-color: white;
 }
@@ -122,8 +106,6 @@ textarea:focus {
 textarea {
   height: 100px;
   resize: vertical;
-  
-
   font-family: inherit;
 }
 
@@ -141,7 +123,6 @@ nav {
   padding: 1rem;
   border: none;
   background: rgba(255, 255, 255, 0.15);
-  
   border-radius: 10px;
   backdrop-filter: blur(12px);
 }
@@ -159,15 +140,13 @@ nav a {
 }
 
 nav a:hover {
-   background-color: #007acc;
+  background-color: #007acc;
   transform: translateY(-2px);
-    color: white;
-
-box-shadow: 0 4px 12px rgba(0, 122, 204, 0.4);
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 122, 204, 0.4);
 }
 
 .polaris_logo {
-
   width: 300px;
   height: 300px;
   margin: 20px auto;
@@ -184,7 +163,6 @@ box-shadow: 0 4px 12px rgba(0, 122, 204, 0.4);
     37% 33%
   );
   filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
- 
 }
 
 .polaris_logo.spinning {
@@ -194,7 +172,6 @@ box-shadow: 0 4px 12px rgba(0, 122, 204, 0.4);
 .polaris_image {
   width: 100%;
   height: 100%;
-
 }
 
 .polaris_logo.spinning .polaris_image {
@@ -219,7 +196,6 @@ box-shadow: 0 4px 12px rgba(0, 122, 204, 0.4);
   h1 {
     font-size: 2.4em;
     margin: 15px 0;
-    
   }
 
   .polaris_logo {
@@ -233,8 +209,7 @@ box-shadow: 0 4px 12px rgba(0, 122, 204, 0.4);
     max-width: 280px;
     padding: 10px 12px;
     font-size: 14px;
-        margin: 12px auto;
-
+    margin: 12px auto;
   }
 
   textarea {
@@ -245,8 +220,7 @@ box-shadow: 0 4px 12px rgba(0, 122, 204, 0.4);
     padding: 8px 18px;
     font-size: 12px;
     min-width: 140px;
-        margin: 12px auto;
-
+    margin: 12px auto;
   }
 
   .clear-now {
@@ -255,7 +229,6 @@ box-shadow: 0 4px 12px rgba(0, 122, 204, 0.4);
     min-width: 120px;
     margin: 10px auto;
   }
-
 
   nav {
     gap: 0.5rem;

@@ -41,16 +41,22 @@ function AppContent() {
     }
   };
 
-  // Logo Spinning State
+  // Logo Spinning State and user click delay
 
   const [isSpinning, setIsSpinning] = useState(false);
+  const [canClick, setCanClick] = useState(true);
 
+  // Logo Spins logic
   useEffect(() => {
     const handleDOMLoaded = () => {
       // Add 3 second delay so page loads
+      setCanClick(false);
       setTimeout(() => {
         setIsSpinning(true);
-        setTimeout(() => setIsSpinning(false), 2000);
+        setTimeout(() => {
+          setIsSpinning(false);
+          setCanClick(true);
+        }, 2000);
       }, 2500);
     };
 
@@ -67,8 +73,14 @@ function AppContent() {
   // Click on logo to make it spins
 
   const handleLogoClick = () => {
-    setIsSpinning(true);
-    setTimeout(() => setIsSpinning(false), 2000);
+    if (!canClick) return;
+
+    setCanClick(false);
+    setIsSpinning(true); // NEW: Immediate spin (removed setTimeout)
+    setTimeout(() => {
+      setIsSpinning(false);
+      setTimeout(() => setCanClick(true), 200); // NEW: 200ms cooldown after animation
+    }, 2000);
   };
 
   // Clear button for previous data cleaning
@@ -79,6 +91,7 @@ function AppContent() {
       setProjectName("");
       setProjectDescription("");
       alert("All previous data cleared");
+      setProjectName(""); // Force to rerender the page. remove it if causes some problems
     } catch (error) {
       alert("Failed to clear data");
     }
@@ -95,7 +108,6 @@ function AppContent() {
     try {
       localStorage.setItem("projectName", projectName);
       localStorage.setItem("projectDescription", projectDescription);
-      console.log("Data saved to localStorage");
       navigate("/planning");
     } catch (error) {
       alert("Failed to save project data");
@@ -115,7 +127,7 @@ function AppContent() {
           <div
             className={`polaris_logo ${isSpinning ? "spinning" : ""}`}
             onClick={handleLogoClick}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: canClick ? "pointer" : "not-allowed" }}
           >
             <img
               src={polarisLogo}
@@ -125,13 +137,12 @@ function AppContent() {
           </div>
 
           {/* Heading */}
-
           <h1>Polaris</h1>
           <br />
 
           {/* toast notifier */}
 
-          <div class="toast-container" id="toast-container"></div>
+          <div className="toast-container" id="toast-container"></div>
 
           {/* Project Name and description */}
 
