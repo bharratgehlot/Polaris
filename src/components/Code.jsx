@@ -177,11 +177,9 @@ function Code() {
                 <option value="visual studio">Visual Studio</option>
               </select>
             </div>
-          </div>
 
-          <br></br>
-          <div className="typography-grid">
-            <div className="input-group">
+
+   <div className="input-group">
               <label className="input-label">Duration of Code (weeks)</label>
               <select
                 className="modern-select"
@@ -201,8 +199,15 @@ function Code() {
                 <option value="3 months">3 months</option>
               </select>
             </div>
+
+
+
+
+
+
           </div>
 
+  
 
         </div>
       </div>

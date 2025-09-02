@@ -12,7 +12,6 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Link,
   useLocation,
 } from "react-router-dom";
 
@@ -189,7 +188,7 @@ const handleLogoClick = () => {
         </>
       )}
 
-      {/* Routing (visible to all pages except home page) */}
+      {/* Routing (visible to all pages except home page) 
 
       {!isHome && (
         <nav>
@@ -200,6 +199,7 @@ const handleLogoClick = () => {
           <Link to="/export">Export</Link>
         </nav>
       )}
+        */}
 
       {/* Route used by all pages and components */}
 
