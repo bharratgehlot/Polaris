@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
-import Build from "./components/Build";
-import Code from "./components/Code";
-import Design from "./components/Design";
-import Export from "./components/Export";
-import Planning from "./components/Planning";
+import { useState, useEffect, lazy, useRef, Suspense } from "react";
+
+const Build = lazy(() => import("./components/Build"));
+const Code = lazy(() => import("./components/Code"));
+const Design = lazy(() => import("./components/Design"));
+const Export = lazy(() => import("./components/Export"));
+const Planning = lazy(() => import("./components/Planning"));
+
 import polarisLogo from "./assets/polaris_logo_2.avif";
 import { useNavigate } from "react-router-dom";
 import {
@@ -45,43 +47,42 @@ function AppContent() {
 
   const [isSpinning, setIsSpinning] = useState(false);
   const [canClick, setCanClick] = useState(true);
+  const timersRef = useRef([]);
+  const mountedRef = useRef(true);
 
-  // Logo Spins logic
+  // Logo Spins logic new
+
   useEffect(() => {
-    const handleDOMLoaded = () => {
-      // Add 3 second delay so page loads
-      setCanClick(false);
-      setTimeout(() => {
-        setIsSpinning(true);
-        setTimeout(() => {
+    setCanClick(false);
+    const timer1 = setTimeout(() => {
+      setIsSpinning(true);
+      const timer2 = setTimeout(() => {
+        if (mountedRef.current) {
           setIsSpinning(false);
           setCanClick(true);
-        }, 2000);
-      }, 2500);
-    };
+        }
+      }, 2000);
+      timersRef.current.push(timer2);
+    }, 2500);
+    timersRef.current.push(timer1);
 
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", handleDOMLoaded);
-    } else {
-      handleDOMLoaded();
-    }
-
-    return () =>
-      document.removeEventListener("DOMContentLoaded", handleDOMLoaded);
   }, []);
 
   // Click on logo to make it spins
 
-  const handleLogoClick = () => {
-    if (!canClick) return;
+const handleLogoClick = () => {
+  if (!canClick) return;
 
-    setCanClick(false);
-    setIsSpinning(true); // NEW: Immediate spin (removed setTimeout)
-    setTimeout(() => {
-      setIsSpinning(false);
-      setTimeout(() => setCanClick(true), 200); // NEW: 200ms cooldown after animation
-    }, 2000);
-  };
+  setCanClick(false);
+  setIsSpinning(true);
+  const timer1 = setTimeout(() => {
+    setIsSpinning(false);
+    const timer2 = setTimeout(() => setCanClick(true), 200);
+    timersRef.current.push(timer2);
+  }, 2000);
+  timersRef.current.push(timer1);
+};
+
 
   // Clear button for previous data cleaning
 
@@ -202,14 +203,16 @@ function AppContent() {
 
       {/* Route used by all pages and components */}
 
-      <Routes>
-        <Route path="/" element={null} />
-        <Route path="/planning" element={<Planning />} />
-        <Route path="/design" element={<Design />} />
-        <Route path="/code" element={<Code />} />
-        <Route path="/build" element={<Build />} />
-        <Route path="/export" element={<Export />} />
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={null} />
+          <Route path="/planning" element={<Planning />} />
+          <Route path="/design" element={<Design />} />
+          <Route path="/code" element={<Code />} />
+          <Route path="/build" element={<Build />} />
+          <Route path="/export" element={<Export />} />
+        </Routes>
+      </Suspense>
     </>
   );
 }
