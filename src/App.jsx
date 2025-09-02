@@ -4,7 +4,7 @@ import Code from "./components/Code";
 import Design from "./components/Design";
 import Export from "./components/Export";
 import Planning from "./components/Planning";
-import polarisLogo from "./assets/polaris_logo_2.png";
+import polarisLogo from "./assets/polaris_logo_2.avif";
 import { useNavigate } from "react-router-dom";
 import {
   BrowserRouter,
