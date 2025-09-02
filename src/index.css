@@ -1,3 +1,9 @@
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+
 :root {
   font-family: system-ui, sans-serif;
   color: #2c2c2c;
@@ -68,7 +74,7 @@ h1 {
   cursor: pointer;
   transition: all 0.25s ease;
   color: white;
-  margin: 10px 0;
+  margin: 6px 0; /* margin applied where ?? */
   font-size: 11px;
 }
 
@@ -220,14 +226,14 @@ nav a:hover {
     padding: 8px 18px;
     font-size: 12px;
     min-width: 140px;
-    margin: 12px auto;
+    margin: 10px 0;
   }
 
   .clear-now {
     padding: 6px 14px;
     font-size: 11px;
     min-width: 120px;
-    margin: 10px auto;
+    margin: 2x 0;
   }
 
   nav {

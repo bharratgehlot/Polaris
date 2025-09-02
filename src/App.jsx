@@ -91,7 +91,7 @@ function AppContent() {
       setProjectName("");
       setProjectDescription("");
       alert("All previous data cleared");
-      setProjectName(""); // Force to rerender the page. remove it if causes some problems
+      window.location.reload(); // Reloads page
     } catch (error) {
       alert("Failed to clear data");
     }
