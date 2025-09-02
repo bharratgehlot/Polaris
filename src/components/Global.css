@@ -7,9 +7,6 @@
   --neutral-bg: rgba(255, 255, 255, 0.9);
 }
 
-html {
-  scroll-behavior: smooth;
-}
 
 /* 1. Page Container Styles */
 
@@ -334,7 +331,11 @@ min-width: 140px;   /* smaller width */
   .page-container {
     max-width: 100%;
     padding: 1rem;
-    backdrop-filter: blur(3px);
+    backdrop-filter: none;
+  }
+
+   .page-card {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Lighter shadow */
   }
 
   .page-title {
@@ -360,12 +361,16 @@ min-width: 140px;   /* smaller width */
     gap: 0.5rem;
   }
 
+   .modern-select {
+    transition: none; /* Remove transitions */
+  }
+
   .save-button,
   .clear-button {
     min-width: 60px;
     padding: 6px 12px;
     font-size: 0.75rem;
-    
+    transition: none;
   }
 
   .next-section {
@@ -377,12 +382,18 @@ min-width: 140px;   /* smaller width */
   .prev-button {
     padding: 10px 16px;
     font-size: 0.8rem;
+    transition: none;
   }
 
   .custom-btn {
     padding: 6px 12px;
     width: 100px;
     font-size: 0.7rem;
+    transition: none;
+  }
+
+   .next-button:hover, .prev-button:hover {
+    box-shadow: none; /* Remove hover shadows */
   }
 
   .toast {
