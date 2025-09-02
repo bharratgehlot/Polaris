@@ -22,6 +22,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  /*background-attachment: fixed; can be reverted back */
 }
 
 #root {
@@ -195,6 +196,11 @@ nav a:hover {
 
 /* Media Query for screens below 440px */
 @media (max-width: 440px) {
+
+  body {
+    background-attachment: scroll;
+  }
+
   #root {
     padding: 10px;
   }
@@ -202,12 +208,14 @@ nav a:hover {
   h1 {
     font-size: 2.4em;
     margin: 15px 0;
+    text-shadow: none;
   }
 
   .polaris_logo {
     width: 200px;
     height: 200px;
     margin: 15px auto;
+    filter: none;
   }
 
   input[type="text"],
@@ -227,6 +235,7 @@ nav a:hover {
     font-size: 12px;
     min-width: 140px;
     margin: 10px 0;
+    transition: none;
   }
 
   .clear-now {
@@ -234,17 +243,29 @@ nav a:hover {
     font-size: 11px;
     min-width: 120px;
     margin: 2x 0;
+    transition: none;
+  }
+
+   .build-now:hover, .clear-now:hover {
+    box-shadow: none; /* Remove shadows */
   }
 
   nav {
     gap: 0.5rem;
     padding: 0.8rem;
     margin: 1.5rem auto;
+    backdrop-filter: none;
   }
 
   nav a {
     padding: 6px 12px;
     font-size: 12px;
+     transition: none;
+  }
+
+ nav a:hover {
+    transform: none; /* Remove transform */
+    box-shadow: none; /* Remove shadows */
   }
 
   .read-the-docs {
