@@ -175,12 +175,14 @@ function Export() {
                   <span className="preview-label">IDE</span>
                   <span className="preview-value">{allProjectData.code.ideSelector || 'Not set'}</span>
                 </div>
+
+
                 <div className="preview-item">
                   <span className="preview-label">Duration</span>
-                  <span className="preview-value">
-                    {allProjectData.code.durationOfCode ? `${allProjectData.code.durationOfCode} weeks` : 'Not set'}
-                  </span>
+                   <span className="preview-value">{allProjectData.code.durationOfCode || 'Not set'}</span>
                 </div>
+
+
               </div>
             </div>
 
@@ -212,6 +214,40 @@ function Export() {
                   <span className="preview-label">Custom Domain</span>
                   <span className="preview-value">{allProjectData.build.customDomain || 'Not set'}</span>
                 </div>
+
+
+                <div className="preview-item">
+                  <span className="preview-label">Generate README</span>
+                  <span className="preview-value">{allProjectData.build.generateReadme || 'Not set'}</span>
+                </div>
+                <div className="preview-item">
+                  <span className="preview-label">Include Docs</span>
+                  <span className="preview-value">{allProjectData.build.includeDocs || 'Not set'}</span>
+                </div>
+                <div className="preview-item">
+                  <span className="preview-label">Installation Guide</span>
+                  <span className="preview-value">{allProjectData.build.installationGuide || 'Not set'}</span>
+                </div>
+                <div className="preview-item">
+                  <span className="preview-label">Scope</span>
+                  <span className="preview-value">{allProjectData.build.scope || 'Not set'}</span>
+                </div>
+                <div className="preview-item">
+                  <span className="preview-label">Ask Questions</span>
+                  <span className="preview-value">{allProjectData.build.askQuestions || 'Not set'}</span>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
               </div>
             </div>
 

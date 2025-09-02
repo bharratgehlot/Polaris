@@ -4,12 +4,12 @@ import './Design.css'
 
 function Design() {
 
-   // Project Name Variable 
+  // Project Name Variable 
 
   const projectName = localStorage.getItem("projectName") || "your project";
 
 
-    // for navigation between components
+  // for navigation between components
 
   const navigate = useNavigate();
 
@@ -70,6 +70,26 @@ function Design() {
   }, [])
 
 
+
+  // Toast function
+  const showToast = (message, type = "success") => {
+    const container = document.getElementById("toast-container");
+    if (!container) return;
+
+    const toast = document.createElement("div");
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+
+    container.appendChild(toast);
+
+    // Remove after 3s
+    setTimeout(() => {
+      toast.remove();
+    }, 3000);
+  };
+
+
+
   // Manual save function for code data
 
 
@@ -77,6 +97,7 @@ function Design() {
     try {
       localStorage.setItem('projectDesignData', JSON.stringify(designData))
       setSavedDesignData(designData)
+      showToast("Saved", "success");
     } catch (error) {
       console.log('Error saving design data: ', error)
     }
@@ -101,6 +122,7 @@ function Design() {
       }
       setDesignData(emptyData)
       setSavedDesignData(emptyData)
+      showToast("Cleared", "info"); 
     } catch (error) {
       console.log('Error clearing design data: ', error)
     }
@@ -352,7 +374,7 @@ function Design() {
                 <div className={`color-preview ${designData.additionalColor.toLowerCase()}`}></div>
               )}
             </div>
-            
+
           </div>
         </div>
 
@@ -578,6 +600,13 @@ function Design() {
             ))}
           </div>
 
+ 
+        </div>
+
+
+      </div>
+
+         <div className="toast-container" id="toast-container"></div>
 
 
           <div className="save-section">
@@ -589,18 +618,12 @@ function Design() {
             </button>
           </div>
 
-        </div>
-
-
-      </div>
-
-
 
 
       <div className="next-section">
-         <button
+        <button
           className="prev-button"
-         onClick={() => navigate('/planning')} // prev
+          onClick={() => navigate('/planning')} // prev
 
 
         >

@@ -46,12 +46,35 @@ function Code() {
     }
   }, []);
 
+
+
+  // Toast function
+  const showToast = (message, type = "success") => {
+    const container = document.getElementById("toast-container");
+    if (!container) return;
+
+    const toast = document.createElement("div");
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+
+    container.appendChild(toast);
+
+    // Remove after 3s
+    setTimeout(() => {
+      toast.remove();
+    }, 3000);
+  };
+
+
+
+
   // Manual save function for code data
 
   const saveCodeData = () => {
     try {
       localStorage.setItem("projectCodeData", JSON.stringify(codeData));
       setSavedCodeData(codeData);
+      showToast("Saved", "success");
     } catch (error) {
       console.log("Error saving code data: ", error);
     }
@@ -68,6 +91,7 @@ function Code() {
       };
       setCodeData(emptyData);
       setSavedCodeData(emptyData);
+      showToast("Cleared", "info");
     } catch (error) {
       console.log("Error clearing code data: ", error);
     }
@@ -108,11 +132,12 @@ function Code() {
 
               <div className="preview-item">
                 <span className="preview-label">Duration</span>
-                <span className="preview-value">
-                  {savedCodeData.durationOfCode
-                    ? `${savedCodeData.durationOfCode} weeks`
-                    : "Not saved"}
-                </span>
+
+
+                <span className="preview-value">{savedCodeData.durationOfCode || "Not saved"}</span>
+
+
+
               </div>
             </div>
           </div>
@@ -148,6 +173,8 @@ function Code() {
                 <option value="webstorm">WebStorm</option>
                 <option value="atom">Atom</option>
                 <option value="sublime">Sublime Text</option>
+                <option value="pycharm">PyCharm</option>
+                <option value="visual studio">Visual Studio</option>
               </select>
             </div>
           </div>
@@ -157,7 +184,7 @@ function Code() {
             <div className="input-group">
               <label className="input-label">Duration of Code (weeks)</label>
               <select
-                              className="modern-select"
+                className="modern-select"
 
                 value={codeData.durationOfCode}
                 onChange={(e) =>
@@ -165,14 +192,23 @@ function Code() {
                 }
               >
                 <option value="">Select Duration</option>
-                <option value="1">1 week</option>
-                <option value="2">2 weeks</option>
-                <option value="4">1 month</option>
-                <option value="8">2 months</option>
-                <option value="12">3 months</option>
+                <option value="2 days">2 Days</option>
+                <option value="5 days">5 Days</option>
+                <option value="1 week">1 Week</option>
+                <option value="10 days">10 days</option>
+                <option value="15 days">15 days</option>
+                <option value="1 month">1 month</option>
+                <option value="3 months">3 months</option>
               </select>
             </div>
           </div>
+
+
+        </div>
+      </div>
+
+          <div className="toast-container" id="toast-container"></div>
+
 
           <div className="save-section">
             <button className="save-button" onClick={saveCodeData}>
@@ -182,8 +218,7 @@ function Code() {
               Clear Data
             </button>
           </div>
-        </div>
-      </div>
+
 
       <div className="next-section">
         <button

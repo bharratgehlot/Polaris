@@ -101,7 +101,7 @@ function Planning() {
     try {
       localStorage.setItem('projectPlanningData', JSON.stringify(planningData))
       setSavedPlanningData(planningData)
-      showToast("Data is saved", "success");
+      showToast("Saved", "success");
     } catch (error) {
       console.log('Error saving planning data: ', error)
     }
@@ -124,7 +124,7 @@ function Planning() {
       }
       setPlanningData(emptyData)
       setSavedPlanningData(emptyData)
-      showToast("Data is cleared", "info");
+      showToast("Cleared", "info");
     } catch (error) {
       console.log('Error clearing planning data: ', error)
     }
@@ -174,7 +174,7 @@ function Planning() {
 
   //const frontendOptions = ['React', 'Vue', 'Angular', 'Svelte', 'Next.js', 'Nuxt.js', 'HTML, CSS, Javascript']
   const backendOptions = ['Not Required', 'Node.js', 'Python', 'Java', 'C#', '.NET', 'PHP', 'Go', 'Ruby on rails', 'Other']
-  const databaseOptions = ['Not Required', 'MongoDB', 'PostgreSQL', 'MySQL', 'SQLite', 'Redis', 'Firebase', 'Other']
+  const databaseOptions = ['Not Required', 'localStorage', 'MongoDB', 'PostgreSQL', 'MySQL', 'SQLite', 'Redis', 'Firebase', 'Other']
 
 
 
@@ -375,11 +375,7 @@ function Planning() {
 
 
 
-      {/* toast notifier */}
-
-      <div class="toast-container" id="toast-container"></div>
-
-
+     
 
 
 
@@ -700,8 +696,13 @@ function Planning() {
 
 
       </div>
-      <br />
-      <div className="page-card">
+   
+ {/* toast notifier */}
+
+      <div class="toast-container" id="toast-container"></div>
+
+
+
         <div className="save-section">
           <button className="save-button" onClick={savePlanningData}>
             Save Data
@@ -710,7 +711,7 @@ function Planning() {
             Clear Data
           </button>
         </div>
-      </div>
+   
 
 
 

@@ -19,7 +19,12 @@ function Build() {
     frontEndHosting: '',
     backendHosting: '',
     databaseHosting: '',
-    customDomain: ""
+    customDomain: "",
+    generateReadme: '',
+    includeDocs: '',
+    installationGuide: '',
+    scope: '',
+    askQuestions: ''
   });
 
   // Saved data with their state (what's been explicitly saved)
@@ -29,7 +34,12 @@ function Build() {
     frontEndHosting: '',
     backendHosting: '',
     databaseHosting: '',
-    customDomain: ""
+    customDomain: "",
+    generateReadme: '',
+    includeDocs: '',
+    installationGuide: '',
+    scope: '',
+    askQuestions: ''
   });
 
   // State Management for the Build Data Preview
@@ -50,11 +60,33 @@ function Build() {
     }
   }, []);
 
+
+  // Toast function
+  const showToast = (message, type = "success") => {
+    const container = document.getElementById("toast-container");
+    if (!container) return;
+
+    const toast = document.createElement("div");
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+
+    container.appendChild(toast);
+
+    // Remove after 3s
+    setTimeout(() => {
+      toast.remove();
+    }, 3000);
+  };
+
+
+
   // Manual save function for build data
   const saveBuildData = () => {
     try {
       localStorage.setItem("projectBuildData", JSON.stringify(buildData));
       setSavedBuildData(buildData);
+      showToast("Saved", "success");
+
     } catch (error) {
       console.log("Error saving build data: ", error);
     }
@@ -69,10 +101,16 @@ function Build() {
         frontEndHosting: '',
         backendHosting: '',
         databaseHosting: '',
-        customDomain: ""
+        customDomain: "",
+        generateReadme: '',
+        includeDocs: '',
+        installationGuide: '',
+        scope: '',
+        askQuestions: ''
       };
       setBuildData(emptyData);
       setSavedBuildData(emptyData);
+      showToast("Cleared", "info");
     } catch (error) {
       console.log("Error clearing build data: ", error);
     }
@@ -136,6 +174,38 @@ function Build() {
                   {savedBuildData.customDomain || "Not saved"}
                 </span>
               </div>
+
+              <div className="preview-item">
+                <span className="preview-label">Generate README</span>
+                <span className="preview-value">{savedBuildData.generateReadme || 'Not saved'}</span>
+              </div>
+              <div className="preview-item">
+                <span className="preview-label">Include Docs</span>
+                <span className="preview-value">{savedBuildData.includeDocs || 'Not saved'}</span>
+              </div>
+              <div className="preview-item">
+                <span className="preview-label">Installation Guide</span>
+                <span className="preview-value">{savedBuildData.installationGuide || 'Not saved'}</span>
+              </div>
+              <div className="preview-item">
+                <span className="preview-label">Scope</span>
+                <span className="preview-value">{savedBuildData.scope || 'Not saved'}</span>
+              </div>
+              <div className="preview-item">
+                <span className="preview-label">Ask Questions</span>
+                <span className="preview-value">{savedBuildData.askQuestions || 'Not saved'}</span>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
             </div>
           </div>
         )}
@@ -285,16 +355,98 @@ function Build() {
             </div>
           </div>
 
-          <div className="save-section">
-            <button className="save-button" onClick={saveBuildData}>
-              Save Data
-            </button>
-            <button className="clear-button" onClick={clearBuildData}>
-              Clear Data
-            </button>
+
+        </div>
+      </div>
+      <br />
+      <div className="page-sections">
+        <div className="page-card">
+          <div className="card-header">
+            <h3 className="card-title">🤖 AI Output</h3>
+            <p className="card-description">Configure AI generation preferences</p>
+          </div>
+
+          <div className="grid-responsive">
+            <div className="input-group">
+              <label className="input-label">Generate README file</label>
+              <select
+                className="modern-select"
+                value={buildData.generateReadme}
+                onChange={(e) => handleBuildChange("generateReadme", e.target.value)}
+              >
+                <option value="">Select option</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+
+            <div className="input-group">
+              <label className="input-label">Include docs</label>
+              <select
+                className="modern-select"
+                value={buildData.includeDocs}
+                onChange={(e) => handleBuildChange("includeDocs", e.target.value)}
+              >
+                <option value="">Select option</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+
+            <div className="input-group">
+              <label className="input-label">Project installation guide</label>
+              <select
+                className="modern-select"
+                value={buildData.installationGuide}
+                onChange={(e) => handleBuildChange("installationGuide", e.target.value)}
+              >
+                <option value="">Select option</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+
+            <div className="input-group">
+              <label className="input-label">Scope</label>
+              <select
+                className="modern-select"
+                value={buildData.scope}
+                onChange={(e) => handleBuildChange("scope", e.target.value)}
+              >
+                <option value="">Select scope</option>
+                <option value="Working skeleton">Working skeleton</option>
+                <option value="Working MVP">Working MVP</option>
+              </select>
+            </div>
+
+            <div className="input-group">
+              <label className="input-label">Ask three questions before generating code</label>
+              <select
+                className="modern-select"
+                value={buildData.askQuestions}
+                onChange={(e) => handleBuildChange("askQuestions", e.target.value)}
+              >
+                <option value="">Select option</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
+
+      <div className="toast-container" id="toast-container"></div>
+
+
+      <div className="save-section">
+        <button className="save-button" onClick={saveBuildData}>
+          Save Data
+        </button>
+        <button className="clear-button" onClick={clearBuildData}>
+          Clear Data
+        </button>
+      </div>
+
 
       <div className="next-section">
         <button

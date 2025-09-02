@@ -183,7 +183,7 @@ function AppContent() {
           )}
 
           <p className="read-the-docs">
-            Polaris helps you create your project faster
+            Polaris helps you plan your project faster
           </p>
         </>
       )}
