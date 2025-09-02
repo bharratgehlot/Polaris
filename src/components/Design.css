@@ -99,6 +99,17 @@
   padding: 1.25rem;
 }
 
+
+/* navigation-grid */
+
+
+.navigation-options {
+  padding: 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem;
+}
+
 /* Font family styles for dropdown options */
 .font-arial {
   font-family: Arial, sans-serif;
@@ -172,15 +183,6 @@
 
 
 
-/* navigation-grid */
-
-
-.navigation-options {
-  padding: 1.25rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 0.75rem;
-}
 
 .radio-option {
   display: flex;

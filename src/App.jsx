@@ -47,19 +47,22 @@ function AppContent() {
 
   useEffect(() => {
     const handleDOMLoaded = () => {
-      setIsSpinning(true)
-      setTimeout(() => setIsSpinning(false), 2000);
-    }
+      // Add 3 second delay so page loads
+      setTimeout(() => {
+        setIsSpinning(true);
+        setTimeout(() => setIsSpinning(false), 2000);
+      }, 2500);
+    };
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', handleDOMLoaded);
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", handleDOMLoaded);
     } else {
       handleDOMLoaded();
     }
-    
-    return () => document.removeEventListener('DOMContentLoaded', handleDOMLoaded)
-  }, []);
 
+    return () =>
+      document.removeEventListener("DOMContentLoaded", handleDOMLoaded);
+  }, []);
 
   // Click on logo to make it spins
 
@@ -130,7 +133,6 @@ function AppContent() {
 
           <div class="toast-container" id="toast-container"></div>
 
-
           {/* Project Name and description */}
 
           <div>
@@ -151,38 +153,23 @@ function AppContent() {
             />
           </div>
 
-         
           {/* Build button */}
 
           <div>
-
-              <button className="build-now" onClick={handleStartBuilding}>
-                START BUILDING
-              </button>
-
+            <button className="build-now" onClick={handleStartBuilding}>
+              START BUILDING
+            </button>
           </div>
 
-
-           {/* Clear button */}
+          {/* Clear button */}
 
           {hasStoredData() && (
             <div>
-              <button
-                className="clear-now"
-                onClick={clearPreviousData}
-              >
+              <button className="clear-now" onClick={clearPreviousData}>
                 Clear Previous Data
               </button>
             </div>
           )}
-
-
-
-
-
-
-
-
 
           <p className="read-the-docs">
             Polaris helps you create your project faster
