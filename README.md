@@ -15,7 +15,7 @@ This project completed and deployed in 7 days only
 
 ## In Action
 
-![Polaris Screenshot](./public/screenshot.png)
+![Polaris Screenshot](./public/screenshot.PNG)
 
 - Take every input from user.
 - Validate it for incompibality
