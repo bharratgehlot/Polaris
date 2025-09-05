@@ -13,3 +13,9 @@ node_modules
 output
 public
 .gitignore
+
+// index.html
+
+1. will use relative url path in og tag when have custom url
+2. added script tag in head for better SEO
+3. added robots.txt
