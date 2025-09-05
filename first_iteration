@@ -1,0 +1,15 @@
+// config
+
+vite.cofig.js               - Checked  -  No Changes
+progress.txt                - Checked  -  No Changes
+package & package lock      - Checked  -  No Changes
+readme.md                   - Checked  -  No Changes
+eslint.config.js            - Checked  -  Added react plugin
+
+// skipped
+
+dist
+node_modules
+output
+public
+.gitignore
