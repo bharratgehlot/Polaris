@@ -14,6 +14,11 @@ DAY 7 (31/08/25) FINAL TEST & DEPLOY 2 - 5 Hours
 
 TOTAL Building Time 30 Hours only 
 
+Iteration
+
+DAY 1 (05/08/25) - fixed something which i forgot - - 1 Hours
+DAY 2 (06/08/25) - added custom domain - polarisapp.online- - 1 Hours
+
 Hosting:
 
 polarisapp.tech     500+

@@ -13,6 +13,10 @@ Ploaris solves it all and give you a single pdf with all the project details.
 
 This project completed and deployed in 7 days only
 
+## Deployed
+
+Polaris Project is live at polarisapp.online and wwww.polarisapp.online
+
 ## In Action
 
 ![Polaris Screenshot](./public/screenshot.PNG)
