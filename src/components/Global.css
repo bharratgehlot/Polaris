@@ -113,7 +113,7 @@
   font-weight: 500;
   transition: background-color 0.2s ease;
   flex: 1;
-  min-width: 80px;
+  min-width: 50px;
   box-shadow: none;
 }
 
@@ -368,9 +368,9 @@ min-width: 140px;   /* smaller width */
 
   .save-button,
   .clear-button {
-    min-width: 60px;
-    padding: 6px 12px;
-    font-size: 0.75rem;
+    min-width: 50px;
+    padding: 5px 8px;
+    font-size: 0.70rem;
     transition: none;
   }
 

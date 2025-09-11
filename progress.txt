@@ -57,3 +57,75 @@ Feature Ideas:
 Build Command:
 
 npm run build
+
+Design Ideas: (Add this in design with pill type button which can be added to new gird called Advanced Styling. Can be added and removed max 10)
+
+ Vibe Coding Keywords Bank 
+
+Here are some effective keywords to include in your vibe coding prompts that will enhance your projects.
+
+ Usability 
+
+* intuitive, seamless, effortless
+* discoverable, predictable, learnable
+* low cognitive load, zero-friction
+* progressive disclosure, clear affordances
+* forgiving flows, undo-friendly
+* consistent patterns, trustworthy, delightful
+* accessible by default, inclusive language
+* meaningful defaults, smart empty states
+
+ Layout & Responsive Design 
+
+* mobile-first, content-first
+* clear visual hierarchy, typographic rhythm
+* generous whitespace, readable line length
+* grid-based sections, card-driven layout
+* edge-to-edge bands, split layouts
+* sticky navigation, anchored CTAs
+* above-the-fold clarity, scannable sections
+* responsive typography, balanced density
+
+ Components & Patterns 
+
+* modals, drawers/sheets
+* tabs, accordions, steppers/wizards
+* toasts, snackbars, notifications center
+* command palette, global search with autosuggest
+* dropdowns, breadcrumbs, pagination, infinite scroll
+* data tables, filterable lists, sortable columns
+* empty states, placeholders, error boundaries
+* cards, chips/badges, CTA buttons
+
+ Features & Functions 
+
+* production-ready quality bar
+* dark mode toggle, theme switcher
+* autosave, draft mode, version history
+* bulk actions, multi-select, quick actions
+* drag-and-drop, keyboard shortcuts
+* real-time collaboration, presence indicators
+* saved views, favorites, pinned items
+* import/export, shareable links, print-friendly
+
+ Micro-interactions 
+
+* transitions, smooth state changes
+* hover/focus/tap feedback
+* loading skeletons, shimmer placeholders
+* optimistic updates, inline validation
+* subtle haptics/sound cues
+* progress indicators, step completion ticks
+* pull-to-refresh, elastic overscroll
+* celebratory micro-wins (tasteful confetti)
+
+ Visual Styling 
+
+* glassmorphism, soft shadows
+* subtle gradients, frosted blur
+* depth layering, elevation cues
+* bold, legible typography
+* high-contrast, accessible palettes
+* consistent iconography, visual metaphors
+* rounded corners vs. sharp edges (intentional)
+* restrained motion, tasteful polish
