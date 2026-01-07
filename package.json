@@ -1,13 +1,19 @@
 {
   "name": "polaris",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "All-in-one project planner that validates tech stacks and exports project blueprints",
+  "author": "BHARRAT GEHLOT",
+  "keywords": ["project-planner", "tech-stack", "react", "vite", "blueprint"],
+  "homepage": "https://www.polarisapp.online",
+
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "vite"
   },
   "dependencies": {
     "react": "^19.1.1",
