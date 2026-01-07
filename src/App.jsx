@@ -8,12 +8,7 @@ const Planning = lazy(() => import("./components/Planning"));
 
 import polarisLogo from "./assets/polaris_logo_2.avif";
 import { useNavigate } from "react-router-dom";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 function AppContent() {
   // Navigate variable
@@ -22,8 +17,12 @@ function AppContent() {
 
   // Variables for storing data
 
-  const [projectName, setProjectName] = useState(localStorage.getItem("projectName") || "");
-  const [projectDescription, setProjectDescription] = useState(localStorage.getItem("projectDescription") || "");
+  const [projectName, setProjectName] = useState(
+    localStorage.getItem("projectName") || ""
+  );
+  const [projectDescription, setProjectDescription] = useState(
+    localStorage.getItem("projectDescription") || ""
+  );
 
   // Checks if there is previously stored data
 
@@ -47,7 +46,7 @@ function AppContent() {
   const [isSpinning, setIsSpinning] = useState(false);
   const [canClick, setCanClick] = useState(true);
   const timersRef = useRef([]);
-  const mountedRef = useRef(true);
+  // const mountedRef = useRef(true);
 
   // // Logo Spins logic new
 
@@ -65,29 +64,25 @@ function AppContent() {
   //   }, 2500);
   //   timersRef.current.push(timer1);
 
-
-
   //  return () => {
-    //  mountedRef.current = false;
-    //  timersRef.current.forEach(timer => clearTimeout(timer));
-    //  timersRef.current = [];
-    // };
+  //  mountedRef.current = false;
+  //  timersRef.current.forEach(timer => clearTimeout(timer));
+  //  timersRef.current = [];
+  // };
 
   // }, []);
 
+  // Logo spins logic (corrected)
 
-// Logo spins logic (corrected)
-
-
-  useEffect(()=> {
+  useEffect(() => {
     // Lock clicking immediately
     setCanClick(false);
 
     // Schedule the spin start
-    const timer1 = setTimeout(()=>{
+    const timer1 = setTimeout(() => {
       setIsSpinning(true);
 
-      // Nested timer 
+      // Nested timer
 
       const timer2 = setTimeout(() => {
         setIsSpinning(false);
@@ -104,24 +99,22 @@ function AppContent() {
       timersRef.current.forEach((timer) => clearTimeout(timer));
       timersRef.current = [];
     };
-
   }, []);
 
   // Click on logo to make it spins
 
-const handleLogoClick = () => {
-  if (!canClick) return;
+  const handleLogoClick = () => {
+    if (!canClick) return;
 
-  setCanClick(false);
-  setIsSpinning(true);
-  const timer1 = setTimeout(() => {
-    setIsSpinning(false);
-    const timer2 = setTimeout(() => setCanClick(true), 200);
-    timersRef.current.push(timer2);
-  }, 2000);
-  timersRef.current.push(timer1);
-};
-
+    setCanClick(false);
+    setIsSpinning(true);
+    const timer1 = setTimeout(() => {
+      setIsSpinning(false);
+      const timer2 = setTimeout(() => setCanClick(true), 200);
+      timersRef.current.push(timer2);
+    }, 2000);
+    timersRef.current.push(timer1);
+  };
 
   // Clear button for previous data cleaning
 
@@ -132,7 +125,7 @@ const handleLogoClick = () => {
       setProjectDescription("");
       alert("All previous data cleared");
       // window.location.reload(); // Reloads page
-      navigate('/')
+      navigate("/");
     } catch (error) {
       alert("Failed to clear data");
     }
@@ -230,7 +223,6 @@ const handleLogoClick = () => {
           </p>
         </>
       )}
-
 
       {/* Route used by all pages and components */}
 
