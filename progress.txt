@@ -1,6 +1,6 @@
-FINAL PILISH 
+FINAL POLISH 
 
-DAY 1 (07/01/26) - 
+DAY 1 (07/01/26) - Final Polishing 1 - 2 hours
 
 
 5 DAY Project (Can be expended to 7 days)
@@ -9,48 +9,16 @@ DAY 1 (27/08/25) - Initial Setup and Planning - 5.5 hours
 DAY 2 (28/08/25) - HOME PAGE and redirection build (minimal working app) - 3 hours
 DAY 3 (29/08/25) - Components Building First and second - 4 hours
 DAY 4 (30/08/25) - Worked on Code and Build Components, fixed preview functionalities 4.5 hours
-DAY 5 (31/08/25) - Final Polish & Deploy 1 - 4.5 Hours
-
-(Extended Days if possible)
- 
-DAY 6 (31/08/25) - Fixing App.jsx and index.css - Addtional Feautres - - 4 Hours
-DAY 7 (31/08/25) FINAL TEST & DEPLOY 2 - 5 Hours
-(Hire someone to do redesign while keeping the strucutre same. Max budget 1000rs)
+DAY 5 (31/08/25) - Final Polish & Deploy 1 - 4.5 Hours 
+DAY 6 (31/08/25) - Fixing App.jsx and index.css - Addtional Feautres - - 5 Hours
+DAY 7 (31/08/25) FINAL TEST & DEPLOY 2 - 6 Hours
 
 TOTAL Building Time 30 Hours only 
-
-Iteration
-
-DAY 1 (05/08/25) - fixed something which i forgot - - 1 Hours
-DAY 2 (06/08/25) - added custom domain - polarisapp.online- - 1 Hours
-
-Hosting:
-
-polarisapp.tech     500+
-thepolarisapp.in    1500rs for three years
-polarisapp.app      1500rs for one year
-thepolaris.app      1500rs for one year
-
-Selected - polarisapp.online - 330rs
-
-polarisapp.me       211rs 
-polarisapp.cat      850rs
-
-Git:
-
-Main Branch - master
-Deploy Branch - builds
-
-Styles:
 
 May use google fonts
 Accent: Bright Blue Green
 theme (from index.css) is dark + blue accent + red error
 
-
-Quality Checks:
-
-index.html => Checked
 
 
 Feature Ideas:

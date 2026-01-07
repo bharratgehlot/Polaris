@@ -22,8 +22,8 @@ function AppContent() {
 
   // Variables for storing data
 
-  const [projectName, setProjectName] = useState("");
-  const [projectDescription, setProjectDescription] = useState("");
+  const [projectName, setProjectName] = useState(localStorage.getItem("projectName") || "");
+  const [projectDescription, setProjectDescription] = useState(localStorage.getItem("projectDescription") || "");
 
   // Checks if there is previously stored data
 
@@ -49,21 +49,61 @@ function AppContent() {
   const timersRef = useRef([]);
   const mountedRef = useRef(true);
 
-  // Logo Spins logic new
+  // // Logo Spins logic new
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   setCanClick(false);
+  //   const timer1 = setTimeout(() => {
+  //     setIsSpinning(true);
+  //     const timer2 = setTimeout(() => {
+  //       if (mountedRef.current) {
+  //         setIsSpinning(false);
+  //         setCanClick(true);
+  //       }
+  //     }, 2000);
+  //     timersRef.current.push(timer2);
+  //   }, 2500);
+  //   timersRef.current.push(timer1);
+
+
+
+  //  return () => {
+    //  mountedRef.current = false;
+    //  timersRef.current.forEach(timer => clearTimeout(timer));
+    //  timersRef.current = [];
+    // };
+
+  // }, []);
+
+
+// Logo spins logic (corrected)
+
+
+  useEffect(()=> {
+    // Lock clicking immediately
     setCanClick(false);
-    const timer1 = setTimeout(() => {
+
+    // Schedule the spin start
+    const timer1 = setTimeout(()=>{
       setIsSpinning(true);
+
+      // Nested timer 
+
       const timer2 = setTimeout(() => {
-        if (mountedRef.current) {
-          setIsSpinning(false);
-          setCanClick(true);
-        }
+        setIsSpinning(false);
+        setCanClick(true);
       }, 2000);
+
       timersRef.current.push(timer2);
     }, 2500);
+
     timersRef.current.push(timer1);
+
+    // this safely cancels the timers if user leaves the page
+    return () => {
+      timersRef.current.forEach((timer) => clearTimeout(timer));
+      timersRef.current = [];
+    };
 
   }, []);
 
@@ -91,7 +131,8 @@ const handleLogoClick = () => {
       setProjectName("");
       setProjectDescription("");
       alert("All previous data cleared");
-      window.location.reload(); // Reloads page
+      // window.location.reload(); // Reloads page
+      navigate('/')
     } catch (error) {
       alert("Failed to clear data");
     }
@@ -150,6 +191,7 @@ const handleLogoClick = () => {
             <input
               type="text"
               placeholder="Project Name"
+              aria-label="Project Name"
               value={projectName}
               onChange={(e) => setProjectName(e.target.value)}
             />
@@ -158,6 +200,7 @@ const handleLogoClick = () => {
           <div>
             <textarea
               placeholder="Project Description"
+              aria-label="Project Description"
               value={projectDescription}
               onChange={(e) => setProjectDescription(e.target.value)}
               maxLength={500}
@@ -188,18 +231,6 @@ const handleLogoClick = () => {
         </>
       )}
 
-      {/* Routing (visible to all pages except home page) 
-
-      {!isHome && (
-        <nav>
-          <Link to="/planning">Planning</Link>
-          <Link to="/design">Design</Link>
-          <Link to="/code">Code</Link>
-          <Link to="/build">Build</Link>
-          <Link to="/export">Export</Link>
-        </nav>
-      )}
-        */}
 
       {/* Route used by all pages and components */}
 
