@@ -1,73 +1,68 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import './Design.css'
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Design.css";
 
 function Design() {
-
-  // Project Name Variable 
+  // Project Name Variable
 
   const projectName = localStorage.getItem("projectName") || "your project";
-
 
   // for navigation between components
 
   const navigate = useNavigate();
 
-
-
   // Working data with their state (what user is currently editing)
 
-
   const [designData, setDesignData] = useState({
-    primaryColor: '',
-    secondaryColor: '',
-    additionalColor: '',
-    fontStyle: '',
-    fontSize: '',
-    navigationStyle: '',
-    spacingPadding: '',
-    buttonStyle: '',
-    componentStyle: ''
-  })
-
+    primaryColor: "",
+    secondaryColor: "",
+    additionalColor: "",
+    fontStyle: "",
+    fontSize: "",
+    navigationStyle: "",
+    spacingPadding: "",
+    buttonStyle: "",
+    componentStyle: "",
+  });
 
   // Saved data with their state (what's been explicitly saved)
 
-
   const [savedDesignData, setSavedDesignData] = useState({
-    primaryColor: '',
-    secondaryColor: '',
-    additionalColor: '',
-    fontStyle: '',
-    fontSize: '',
-    navigationStyle: '',
-    spacingPadding: '',
-    buttonStyle: '',
-    componentStyle: ''
-  })
-
-
-
+    primaryColor: "",
+    secondaryColor: "",
+    additionalColor: "",
+    fontStyle: "",
+    fontSize: "",
+    navigationStyle: "",
+    spacingPadding: "",
+    buttonStyle: "",
+    componentStyle: "",
+  });
 
   // State Management for the Design Data Preview
 
-  const [showDesignPreview, setShowDesignPreview] = useState(false)
-
+  const [showDesignPreview, setShowDesignPreview] = useState(false);
 
   // Load saved Design data from local storage
 
   useEffect(() => {
     try {
-      const savedDesignData = localStorage.getItem('projectDesignData')
+      const savedDesignData = localStorage.getItem("projectDesignData");
       if (savedDesignData) {
-        const parsedData = JSON.parse(savedDesignData)
-        setSavedDesignData(parsedData)  // Set saved state
-        setDesignData(parsedData)       // Set working state
+        const parsedData = JSON.parse(savedDesignData);
+        setSavedDesignData(parsedData); // Set saved state
+        setDesignData(parsedData); // Set working state
       }
     } catch (error) {
-      console.log('Error loading design data: ', error)
+      console.log("Error loading design data: ", error);
     }
-  }, [])
+  }, []);
+
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
 
 
@@ -88,119 +83,95 @@ function Design() {
     }, 3000);
   };
 
-
-
   // Manual save function for code data
-
 
   const saveDesignData = () => {
     try {
-      localStorage.setItem('projectDesignData', JSON.stringify(designData))
-      setSavedDesignData(designData)
+      localStorage.setItem("projectDesignData", JSON.stringify(designData));
+      setSavedDesignData(designData);
       showToast("Saved", "success");
     } catch (error) {
-      console.log('Error saving design data: ', error)
+      console.log("Error saving design data: ", error);
     }
-  }
-
+  };
 
   // Manual CLear Button
 
   const clearDesignData = () => {
     try {
-      localStorage.removeItem('projectDesignData')
+      localStorage.removeItem("projectDesignData");
       const emptyData = {
-        primaryColor: '',
-        secondaryColor: '',
-        additionalColor: '',
-        fontStyle: '',
-        fontSize: '',
-        navigationStyle: '',
-        spacingPadding: '',
-        buttonStyle: '',
-        componentStyle: ''
-      }
-      setDesignData(emptyData)
-      setSavedDesignData(emptyData)
-      showToast("Cleared", "info"); 
+        primaryColor: "",
+        secondaryColor: "",
+        additionalColor: "",
+        fontStyle: "",
+        fontSize: "",
+        navigationStyle: "",
+        spacingPadding: "",
+        buttonStyle: "",
+        componentStyle: "",
+      };
+      setDesignData(emptyData);
+      setSavedDesignData(emptyData);
+      showToast("Cleared", "info");
     } catch (error) {
-      console.log('Error clearing design data: ', error)
+      console.log("Error clearing design data: ", error);
     }
-  }
-
-
-
-
+  };
 
   // Additional (Specific to Design.jsx)
 
-  // Color Options Array 1 
+  // Color Options Array 1
 
-  const colorOptions = ['Red', 'Blue', 'Green', 'Purple', 'Orange', 'Pink', 'Yellow', 'Teal', 'Indigo', 'Gray', 'Black', 'White']
+  const colorOptions = [
+    "Red",
+    "Blue",
+    "Green",
+    "Purple",
+    "Orange",
+    "Pink",
+    "Yellow",
+    "Teal",
+    "Indigo",
+    "Gray",
+    "Black",
+    "White",
+  ];
 
-
-  // Font styling code 2 
+  // Font styling code 2
 
   const getFontClass = (fontName) => {
     const fontMap = {
-      'Arial': 'font-arial',
-      'Helvetica': 'font-helvetica',
-      'Times New Roman': 'font-times',
-      'Georgia': 'font-georgia',
-      'Verdana': 'font-verdana',
-      'Roboto': 'font-roboto',
-      'Open Sans': 'font-opensans',
-      'Lato': 'font-lato',
-      'Montserrat': 'font-montserrat',
-      'Poppins': 'font-poppins'
-    }
-    return fontMap[fontName] || ''
-  }
+      Arial: "font-arial",
+      Helvetica: "font-helvetica",
+      "Times New Roman": "font-times",
+      Georgia: "font-georgia",
+      Verdana: "font-verdana",
+      Roboto: "font-roboto",
+      "Open Sans": "font-opensans",
+      Lato: "font-lato",
+      Montserrat: "font-montserrat",
+      Poppins: "font-poppins",
+    };
+    return fontMap[fontName] || "";
+  };
 
   // Font Sizing code 3
 
   const getFontSizeClass = (fontSize) => {
     const sizeMap = {
-      '12px': 'size-12px',
-      '14px': 'size-14px',
-      '16px': 'size-16px',
-      '18px': 'size-18px',
-      '20px': 'size-20px'
-    }
-    return sizeMap[fontSize] || ''
-  }
-
-
-
-
-
-
+      "12px": "size-12px",
+      "14px": "size-14px",
+      "16px": "size-16px",
+      "18px": "size-18px",
+      "20px": "size-20px",
+    };
+    return sizeMap[fontSize] || "";
+  };
 
   const handleColorChange = (field, value) => {
-    setDesignData(prev => ({ ...prev, [field]: value }))
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    setDesignData((prev) => ({ ...prev, [field]: value }));
+  };
 
   return (
     <div className="page-container">
@@ -209,41 +180,28 @@ function Design() {
         <p className="page-subtitle"> Set {projectName}'s look & feel</p>
       </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       <div className="preview-card">
         <button
-          className={`preview-toggle ${showDesignPreview ? 'active' : ''}`}
+          className={`preview-toggle ${showDesignPreview ? "active" : ""}`}
           onClick={() => setShowDesignPreview(!showDesignPreview)}
         >
-          <span className="toggle-icon">{showDesignPreview ? '▼' : '▶'}</span>
-          {showDesignPreview ? 'Hide Design Data' : 'Show Design Data'}
+          <span className="toggle-icon">{showDesignPreview ? "▼" : "▶"}</span>
+          {showDesignPreview ? "Hide Design Data" : "Show Design Data"}
         </button>
 
         {showDesignPreview && (
           <div className="preview-content">
             <div className="preview-grid">
-
-
               <div className="preview-item">
                 <span className="preview-label">Colors</span>
                 <span className="preview-value">
-                  {[savedDesignData.primaryColor, savedDesignData.secondaryColor, savedDesignData.additionalColor]
-                    .filter(Boolean).join(', ') || 'Not saved'}
+                  {[
+                    savedDesignData.primaryColor,
+                    savedDesignData.secondaryColor,
+                    savedDesignData.additionalColor,
+                  ]
+                    .filter(Boolean)
+                    .join(", ") || "Not saved"}
                 </span>
               </div>
 
@@ -251,72 +209,44 @@ function Design() {
                 <span className="preview-label">Typography</span>
                 <span className="preview-value">
                   {[savedDesignData.fontStyle, savedDesignData.fontSize]
-                    .filter(Boolean).join(' - ') || 'Not saved'}
+                    .filter(Boolean)
+                    .join(" - ") || "Not saved"}
                 </span>
               </div>
 
               <div className="preview-item">
                 <span className="preview-label">Navigation</span>
-                <span className="preview-value">{savedDesignData.navigationStyle || 'Not saved'}</span>
+                <span className="preview-value">
+                  {savedDesignData.navigationStyle || "Not saved"}
+                </span>
               </div>
 
               <div className="preview-item">
                 <span className="preview-label">Spacing</span>
-                <span className="preview-value">{savedDesignData.spacingPadding || 'Not saved'}</span>
+                <span className="preview-value">
+                  {savedDesignData.spacingPadding || "Not saved"}
+                </span>
               </div>
 
               <div className="preview-item">
                 <span className="preview-label">Button Style</span>
-                <span className="preview-value">{savedDesignData.buttonStyle || 'Not saved'}</span>
+                <span className="preview-value">
+                  {savedDesignData.buttonStyle || "Not saved"}
+                </span>
               </div>
 
               <div className="preview-item">
                 <span className="preview-label">Component Style</span>
-                <span className="preview-value">{savedDesignData.componentStyle || 'Not saved'}</span>
+                <span className="preview-value">
+                  {savedDesignData.componentStyle || "Not saved"}
+                </span>
               </div>
-
-
-
             </div>
           </div>
         )}
       </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       <div className="page-sections">
-
-
         <div className="page-card">
           <div className="card-header">
             <h3 className="card-title">🎨 Color Palette</h3>
@@ -329,15 +259,21 @@ function Design() {
               <select
                 className="color-select"
                 value={designData.primaryColor}
-                onChange={(e) => handleColorChange('primaryColor', e.target.value)}
+                onChange={(e) =>
+                  handleColorChange("primaryColor", e.target.value)
+                }
               >
                 <option value="">Choose color</option>
-                {colorOptions.map(color => (
-                  <option key={color} value={color}>{color}</option>
+                {colorOptions.map((color) => (
+                  <option key={color} value={color}>
+                    {color}
+                  </option>
                 ))}
               </select>
               {designData.primaryColor && (
-                <div className={`color-preview ${designData.primaryColor.toLowerCase()}`}></div>
+                <div
+                  className={`color-preview ${designData.primaryColor.toLowerCase()}`}
+                ></div>
               )}
             </div>
 
@@ -346,15 +282,21 @@ function Design() {
               <select
                 className="color-select"
                 value={designData.secondaryColor}
-                onChange={(e) => handleColorChange('secondaryColor', e.target.value)}
+                onChange={(e) =>
+                  handleColorChange("secondaryColor", e.target.value)
+                }
               >
                 <option value="">Choose color</option>
-                {colorOptions.map(color => (
-                  <option key={color} value={color}>{color}</option>
+                {colorOptions.map((color) => (
+                  <option key={color} value={color}>
+                    {color}
+                  </option>
                 ))}
               </select>
               {designData.secondaryColor && (
-                <div className={`color-preview ${designData.secondaryColor.toLowerCase()}`}></div>
+                <div
+                  className={`color-preview ${designData.secondaryColor.toLowerCase()}`}
+                ></div>
               )}
             </div>
 
@@ -363,41 +305,25 @@ function Design() {
               <select
                 className="color-select"
                 value={designData.additionalColor}
-                onChange={(e) => handleColorChange('additionalColor', e.target.value)}
+                onChange={(e) =>
+                  handleColorChange("additionalColor", e.target.value)
+                }
               >
                 <option value="">Choose color</option>
-                {colorOptions.map(color => (
-                  <option key={color} value={color}>{color}</option>
+                {colorOptions.map((color) => (
+                  <option key={color} value={color}>
+                    {color}
+                  </option>
                 ))}
               </select>
               {designData.additionalColor && (
-                <div className={`color-preview ${designData.additionalColor.toLowerCase()}`}></div>
+                <div
+                  className={`color-preview ${designData.additionalColor.toLowerCase()}`}
+                ></div>
               )}
             </div>
-
           </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <div className="page-card">
           <div className="card-header">
@@ -405,59 +331,89 @@ function Design() {
             <p className="card-description">Set your text styles</p>
           </div>
 
-
           <div className="typography-grid">
-
             <div className="input-group">
               <label className="input-label">Font Family</label>
               <select
-                className={`modern-select ${getFontClass(designData.fontStyle)}`}
+                className={`modern-select ${getFontClass(
+                  designData.fontStyle
+                )}`}
                 value={designData.fontStyle}
-                onChange={(e) => handleColorChange('fontStyle', e.target.value)}
+                onChange={(e) => handleColorChange("fontStyle", e.target.value)}
               >
                 <option value="">Select font</option>
-                <option value="Arial" className="font-arial">Arial</option>
-                <option value="Helvetica" className="font-helvetica">Helvetica</option>
-                <option value="Times New Roman" className="font-times">Times New Roman</option>
-                <option value="Georgia" className="font-georgia">Georgia</option>
-                <option value="Verdana" className="font-verdana">Verdana</option>
-                <option value="Roboto" className="font-roboto">Roboto</option>
-                <option value="Open Sans" className="font-opensans">Open Sans</option>
-                <option value="Lato" className="font-lato">Lato</option>
-                <option value="Montserrat" className="font-montserrat">Montserrat</option>
-                <option value="Poppins" className="font-poppins">Poppins</option>
+                <option value="Arial" className="font-arial">
+                  Arial
+                </option>
+                <option value="Helvetica" className="font-helvetica">
+                  Helvetica
+                </option>
+                <option value="Times New Roman" className="font-times">
+                  Times New Roman
+                </option>
+                <option value="Georgia" className="font-georgia">
+                  Georgia
+                </option>
+                <option value="Verdana" className="font-verdana">
+                  Verdana
+                </option>
+                <option value="Roboto" className="font-roboto">
+                  Roboto
+                </option>
+                <option value="Open Sans" className="font-opensans">
+                  Open Sans
+                </option>
+                <option value="Lato" className="font-lato">
+                  Lato
+                </option>
+                <option value="Montserrat" className="font-montserrat">
+                  Montserrat
+                </option>
+                <option value="Poppins" className="font-poppins">
+                  Poppins
+                </option>
               </select>
             </div>
 
             <div className="input-group">
               <label className="input-label">Base Size</label>
               <select
-                className={`modern-select ${getFontSizeClass(designData.fontSize)}`} value={designData.fontSize}
-
-                onChange={(e) => handleColorChange('fontSize', e.target.value)}
+                className={`modern-select ${getFontSizeClass(
+                  designData.fontSize
+                )}`}
+                value={designData.fontSize}
+                onChange={(e) => handleColorChange("fontSize", e.target.value)}
               >
                 <option value="">Select size</option>
-                <option value="12px" className="size-12px">12px - Small</option>
-                <option value="14px" className="size-14px">14px - Default</option>
-                <option value="16px" className="size-16px">16px - Medium</option>
-                <option value="18px" className="size-18px">18px - Large</option>
-                <option value="20px" className="size-20px">20px - Extra Large</option>
+                <option value="12px" className="size-12px">
+                  12px - Small
+                </option>
+                <option value="14px" className="size-14px">
+                  14px - Default
+                </option>
+                <option value="16px" className="size-16px">
+                  16px - Medium
+                </option>
+                <option value="18px" className="size-18px">
+                  18px - Large
+                </option>
+                <option value="20px" className="size-20px">
+                  20px - Extra Large
+                </option>
               </select>
 
-
               {designData.fontSize && (
-                <div className={`font-size-preview ${getFontSizeClass(designData.fontSize)}`}>
+                <div
+                  className={`font-size-preview ${getFontSizeClass(
+                    designData.fontSize
+                  )}`}
+                >
                   Sample text in {designData.fontSize}
-                </div>)}
+                </div>
+              )}
             </div>
           </div>
-
         </div>
-
-
-
-
-
 
         <div className="page-card">
           <div className="card-header">
@@ -465,21 +421,22 @@ function Design() {
             <p className="card-description">Choose navigation style</p>
           </div>
 
-
           <div className="navigation-options">
             {[
-              { value: 'Top Bar', preview: 'topbar' },
-              { value: 'Sidebar', preview: 'sidebar' },
-              { value: 'Bottom Nav', preview: 'bottom' },
-              { value: 'Hamburger Menu', preview: 'hamburger' }
-            ].map(style => (
+              { value: "Top Bar", preview: "topbar" },
+              { value: "Sidebar", preview: "sidebar" },
+              { value: "Bottom Nav", preview: "bottom" },
+              { value: "Hamburger Menu", preview: "hamburger" },
+            ].map((style) => (
               <label key={style.value} className="radio-option">
                 <input
                   type="radio"
                   name="navigation"
                   value={style.value}
                   checked={designData.navigationStyle === style.value}
-                  onChange={(e) => handleColorChange('navigationStyle', e.target.value)}
+                  onChange={(e) =>
+                    handleColorChange("navigationStyle", e.target.value)
+                  }
                 />
                 <span className="radio-custom"></span>
                 <div>
@@ -491,9 +448,6 @@ function Design() {
           </div>
         </div>
 
-
-
-
         <div className="page-card">
           <div className="card-header">
             <h3 className="card-title">📏 Spacing</h3>
@@ -502,17 +456,27 @@ function Design() {
 
           <div className="spacing-options">
             {[
-              { value: 'Compact', label: 'Compact', desc: 'Tight spacing' },
-              { value: 'Comfortable', label: 'Comfortable', desc: 'Balanced spacing' },
-              { value: 'Spacious', label: 'Spacious', desc: 'Generous spacing' }
-            ].map(option => (
+              { value: "Compact", label: "Compact", desc: "Tight spacing" },
+              {
+                value: "Comfortable",
+                label: "Comfortable",
+                desc: "Balanced spacing",
+              },
+              {
+                value: "Spacious",
+                label: "Spacious",
+                desc: "Generous spacing",
+              },
+            ].map((option) => (
               <label key={option.value} className="spacing-option">
                 <input
                   type="radio"
                   name="spacing"
                   value={option.value}
                   checked={designData.spacingPadding === option.value}
-                  onChange={(e) => handleColorChange('spacingPadding', e.target.value)}
+                  onChange={(e) =>
+                    handleColorChange("spacingPadding", e.target.value)
+                  }
                 />
                 <div className="spacing-card">
                   <span className="spacing-title">{option.label}</span>
@@ -523,10 +487,6 @@ function Design() {
           </div>
         </div>
 
-
-
-
-
         <div className="page-card">
           <div className="card-header">
             <h3 className="card-title">🔘 Button Style</h3>
@@ -535,25 +495,36 @@ function Design() {
 
           <div className="button-styles-grid">
             {[
-              { value: 'Rounded', preview: 'rounded' },
-              { value: 'Pill', preview: 'pill' },
-              { value: 'Sharp', preview: 'sharp' },
-              { value: 'Outlined', preview: 'outlined' },
-              { value: 'Ghost', preview: 'ghost' },
-              { value: 'Gradient', preview: 'gradient' }
-            ].map(style => (
+              { value: "Rounded", preview: "rounded" },
+              { value: "Pill", preview: "pill" },
+              { value: "Sharp", preview: "sharp" },
+              { value: "Outlined", preview: "outlined" },
+              { value: "Ghost", preview: "ghost" },
+              { value: "Gradient", preview: "gradient" },
+            ].map((style) => (
               <label key={style.value} className="btn-style-option">
                 <input
                   type="radio"
                   name="buttonStyle"
                   value={style.value}
                   checked={designData.buttonStyle === style.value}
-                  onChange={(e) => handleColorChange('buttonStyle', e.target.value)}
+                  onChange={(e) =>
+                    handleColorChange("buttonStyle", e.target.value)
+                  }
                 />
                 <span className="radio-custom"></span>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }} >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    width: "100%",
+                  }}
+                >
                   <span className="radio-label">{style.value}</span>
-                  <button className={`btn-style-preview ${style.preview}`}>Sample</button>
+                  <button className={`btn-style-preview ${style.preview}`}>
+                    Sample
+                  </button>
                 </div>
               </label>
             ))}
@@ -568,13 +539,13 @@ function Design() {
 
           <div className="component-styles-grid">
             {[
-              { value: 'Material', preview: 'material' },
-              { value: 'Flat', preview: 'flat' },
-              { value: 'Neumorphism', preview: 'neumorphism' },
-              { value: 'Glassmorphism', preview: 'glassmorphism' },
-              { value: 'Minimal', preview: 'minimal' },
-              { value: 'Brutalist', preview: 'brutalist' }
-            ].map(style => (
+              { value: "Material", preview: "material" },
+              { value: "Flat", preview: "flat" },
+              { value: "Neumorphism", preview: "neumorphism" },
+              { value: "Glassmorphism", preview: "glassmorphism" },
+              { value: "Minimal", preview: "minimal" },
+              { value: "Brutalist", preview: "brutalist" },
+            ].map((style) => (
               <label key={style.value} className="comp-style-option">
                 <input
                   type="radio"
@@ -582,73 +553,57 @@ function Design() {
                   value={style.value}
                   checked={designData.componentStyle === style.value}
                   onChange={(e) => {
-
-                    setDesignData({ ...designData, componentStyle: e.target.value })
-                    console.log('designData.componentStyle =', e.target.value)
-                  }
-                  }
-
-
+                    setDesignData({
+                      ...designData,
+                      componentStyle: e.target.value,
+                    });
+                  }}
                 />
-                {/*onChange={(e) => handleColorChange('componentStyle', e.target.value)}*/}
                 <span className="radio-custom"></span>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }} >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    width: "100%",
+                  }}
+                >
                   <span className="radio-label">{style.value}</span>
                   <div className={`comp-style-preview ${style.preview}`}></div>
                 </div>
               </label>
             ))}
           </div>
-
- 
         </div>
-
-
       </div>
 
-         <div className="toast-container" id="toast-container"></div>
+      <div className="toast-container" id="toast-container"></div>
 
-
-          <div className="save-section">
-            <button className="save-button" onClick={saveDesignData}>
-              Save Data
-            </button>
-            <button className="clear-button" onClick={clearDesignData}>
-              Clear Data
-            </button>
-          </div>
-
-
+      <div className="save-section">
+        <button className="save-button" onClick={saveDesignData}>
+          Save Data
+        </button>
+        <button className="clear-button" onClick={clearDesignData}>
+          Clear Data
+        </button>
+      </div>
 
       <div className="next-section">
         <button
           className="prev-button"
-          onClick={() => navigate('/planning')} // prev
-
-
+          onClick={() => navigate("/planning")} // prev
         >
           ← Back to Planning
         </button>
         <button
           className="next-button"
-          onClick={() => navigate('/code')}     // next
+          onClick={() => navigate("/code")} // next
         >
           Continue to Code →
         </button>
       </div>
-
-
-
-
-
-
-
-
-
-
-
     </div>
-  )
+  );
 }
 
-export default Design
+export default Design;

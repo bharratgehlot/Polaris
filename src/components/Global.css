@@ -7,20 +7,15 @@
   --neutral-bg: rgba(255, 255, 255, 0.9);
 }
 
-
 /* 1. Page Container Styles */
 
 .page-container {
   max-width: 439px;
   margin: 0 auto;
   padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.5);  /*CHANGED*/
   backdrop-filter: blur(6px);
   border-radius: 12px;
-  
-
-  /*background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);*/
-  /*min-height: 100vh; */
 }
 
 .page-header {
